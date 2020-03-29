@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Home from './Home';
 import Login from './Login';
+import Register from './Register';
 import Rate from './Rate';
 import Summary from './Summary';
 import Settings from './Settings';
@@ -16,6 +17,7 @@ const AppNavigator = createStackNavigator(
   {
     Home: Home,
     Login: Login,
+    Register: Register,
     Rate: Rate,
     Summary: Summary,
     Settings: Settings,

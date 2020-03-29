@@ -2,7 +2,8 @@ export const loginAction = {
     request: 'LOGIN_REQUEST',
     success: 'LOGIN_SUCCESS',
     failure: 'LOGIN_FAILURE',
-    logout: 'LOGOUT'
+    logout: 'LOGOUT',
+    method: 'LOGIN_METHOD'
 };
 
 export const loginRequest = () => ({
@@ -20,3 +21,8 @@ export const loginFailure = () => ({
 export const logout = () => ({
     type: loginAction.logout
 });
+
+export const loginMethod = (value) => ({
+    type: loginAction.method,
+    payload: value
+})

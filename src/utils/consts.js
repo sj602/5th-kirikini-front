@@ -11,6 +11,9 @@ export const SERVER_URL = '13.124.158.62';
 // export const FB_URL = `http://${localhost}:8000/facebook_login`
 // export const AUTO_URL = `http://${localhost}:8000/auto_login`
 
+// // Register
+// export const EMAIL_REGISTER_URL = `http://${localhost}:8000/email_register`;
+
 // // Summary
 // export const LOAD_MONTH_MEAL_URL = `http://${localhost}:8000/meal/month`
 // export const LOAD_WEEK_REPORT_URL = `http://${localhost}:8000/report/week`
@@ -36,6 +39,9 @@ export const KAKAO_URL = `http://${SERVER_URL}/kakao_login`;
 export const FB_URL = `http://${SERVER_URL}/facebook_login`;
 export const AUTO_URL = `http://${SERVER_URL}/auto_login`;
 
+// Register
+export const EMAIL_REGISTER_URL = `http://${SERVER_URL}/email_register`;
+
 // Summary
 export const LOAD_MONTH_MEAL_URL = `http://${SERVER_URL}/meal/month`;
 export const LOAD_WEEK_REPORT_URL = `http://${SERVER_URL}/report/week`;
@@ -54,9 +60,12 @@ export const SAVE_MEAL_URL = `http://${SERVER_URL}/meal/`;
 // Setting
 export const PRIVACY_URL = `http://${SERVER_URL}/privacy/`;
 
+
 // Device
 export const deviceWidth = Dimensions.get('window').width;
 export const deviceHeight = Dimensions.get('window').height;
+
+
 // EStyleSheet.build({ $rem: deviceHeight / 780 });
 EStyleSheet.build({ $rem: deviceWidth / 380 });
 

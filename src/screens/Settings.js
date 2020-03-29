@@ -9,6 +9,10 @@ import { logout } from '../store/auth/action';
 import { PRIVACY_URL } from '../utils/consts';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import KakaoLogins from '@react-native-seoul/kakao-login';
+import appleAuth, {
+  AppleAuthRequestOperation,
+  AppleAuthCredentialState,
+} from '@invertase/react-native-apple-authentication';
 import {
   RATE_MEAL_URL,
   deviceWidth,
@@ -26,6 +30,21 @@ const Settings = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const dispatch = useDispatch();
 
+  const appleLogout = async () => {
+    // performs logout request
+    const appleAuthRequestResponse = await appleAuth.performRequest({
+      requestedOperation: AppleAuthRequestOperation.LOGOUT,
+    });
+  
+    // get current authentication state for user
+    const credentialState = await appleAuth.getCredentialStateForUser(appleAuthRequestResponse.user);
+  
+    // use credentialState response to ensure the user credential's have been revoked
+    if (credentialState === AppleAuthCredentialState.REVOKED) {
+      // user is unauthenticated
+    }
+  }
+
   const handleLogout = async () => {
     try {
       await AsyncStorage.multiRemove([
@@ -34,6 +53,7 @@ const Settings = props => {
         '@email'
       ]);
       await KakaoLogins.logout();
+      // await appleLogout();
 
       dispatch(logout());
       props.navigation.navigate('Login');
