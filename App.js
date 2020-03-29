@@ -15,13 +15,13 @@ const App = () => {
     </Provider>    
 =======
 import SplashScreen from 'react-native-splash-screen';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 import * as Sentry from '@sentry/react-native';
 
-Sentry.init({ 
-  dsn: 'https://80f39517da28453699f627d33362527a@sentry.io/1872780', 
+Sentry.init({
+  dsn: 'https://80f39517da28453699f627d33362527a@sentry.io/1872780'
 });
-
 
 const store = configureStore();
 

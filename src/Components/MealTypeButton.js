@@ -36,22 +36,22 @@ const meal = {
 const mealTypes = [
   {
     key: 0,
-    text: '집밥',
+    text: '집밥 ',
     color: meal.a
   },
   {
     key: 1,
-    text: '외식',
+    text: '외식 ',
     color: meal.b
   },
   {
     key: 2,
-    text: '배달',
+    text: '배달 ',
     color: meal.c
   },
   {
     key: 3,
-    text: '간편',
+    text: '간편 ',
     color: meal.d
   }
 ];
@@ -76,10 +76,13 @@ const MealTypeButton = props => {
             <View style={btColor(item.color).selected} />
           )}
           {selected !== item.key && (
-            <Text style={mealbtSt.txtUnselected}> {item.text}</Text>
+            <Text style={[mealbtSt.txtUnselected, font.seven]}>
+              {' '}
+              {item.text}
+            </Text>
           )}
           {selected === item.key && (
-            <Text style={mealbtSt.txtSelected}> {item.text}</Text>
+            <Text style={[mealbtSt.txtSelected, font.eight]}> {item.text}</Text>
           )}
           {/* <Text style={mealbtSt.buttonText}> {item.text}</Text> */}
         </TouchableOpacity>
@@ -112,16 +115,41 @@ const btColor = color =>
       borderRadius: 100,
       borderWidth: '3.5rem',
       borderColor: yellow.a,
-      backgroundColor: color,
-      
+      backgroundColor: color
     }
   });
+const font = EStyleSheet.create({
+  eight:
+    Platform.OS === 'ios'
+      ? {
+          fontWeight: '800'
+        }
+      : {
+          fontWeight: 'bold'
+        },
+  seven:
+    Platform.OS === 'ios'
+      ? {
+          fontWeight: '700'
+        }
+      : {
+          fontWeight: 'bold'
+        },
+  six:
+    Platform.OS === 'ios'
+      ? {
+          fontWeight: '600'
+        }
+      : {
+          fontWeight: 'normal'
+        }
+});
 
 const mealbtSt = EStyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'center'
     // backgroundColor: 'pink'
   },
 
@@ -137,18 +165,16 @@ const mealbtSt = EStyleSheet.create({
   // },
   txtUnselected: {
     position: 'absolute',
-    left: '10.3rem',
-    fontSize: '15rem',
+    // left: '10.5rem',
+    fontSize: '15.5rem',
     lineHeight: '21rem',
-    fontFamily: 'NotoSansCJKkr-Medium',
     color: gray.d
   },
   txtSelected: {
     position: 'absolute',
-    left: '10.2rem',
+    // left: '10.15rem',
     color: 'white',
-    fontSize: '15rem',
-    fontFamily: 'NotoSansCJKkr-Black'
+    fontSize: '15.5rem'
   }
 });
 

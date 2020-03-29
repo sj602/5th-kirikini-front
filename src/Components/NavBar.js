@@ -40,7 +40,7 @@ const navBarButtons = [
   },
   {
     key: 2,
-    text: '기록',
+    text: '성적',
     iconSelected: require('../img/navIconS2.png'),
     iconUnselected: require('../img/navIconU2.png'),
     nav: 'Summary'
@@ -56,7 +56,7 @@ const navBarButtons = [
 
 const NavBar = props => {
   const [selected, setSelected] = useState(null);
-  console.log('rendered:', selected);
+  // console.log('rendered:', selected);
 
   const selectedMenu = props.navigation.getParam('selectedMenu');
   useEffect(() => {
@@ -89,7 +89,7 @@ const NavBar = props => {
                 }}
                 source={item.iconUnselected}
               />
-              <Text style={[navBar.txtUnselected, font.six]}>{item.text}</Text>    
+              <Text style={[navBar.txtUnselected, font.six]}>{item.text}</Text>
             </Fragment>
           )}
 
@@ -128,13 +128,14 @@ const navBar = EStyleSheet.create({
     paddingLeft: '7rem',
     paddingRight: '7rem',
     borderTopLeftRadius: '37rem',
-    borderTopRightRadius:'37rem',
+    borderTopRightRadius: '37rem',
     backgroundColor: 'white',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.2,
     shadowRadius: 7,
     elevation: 40
+    // overflow: 'hidden'
   },
   oneButton: {
     flex: 1,
@@ -144,33 +145,42 @@ const navBar = EStyleSheet.create({
   },
   txtSelected: {
     color: yellow.a,
-    fontSize: '9.5rem',
+    fontSize: '10.5rem',
     lineHeight: '12rem'
   },
   txtUnselected: {
     color: gray.c,
-    fontSize: '9rem',
+    fontSize: '10.5rem',
     lineHeight: '12rem'
   }
 });
 
-const font = EStyleSheet.create ({
-  eight: Platform.OS === 'ios' ? {
-    fontWeight: '800'
-  } : {
-   fontWeight: 'bold'
-  },
-  seven: Platform.OS === 'ios' ? {
-    fontWeight: '700'
-  } : {
-   fontWeight: 'bold'
-  },
-  six:Platform.OS === 'ios' ? {
-    fontWeight: '600'
-  } : {
-   fontWeight: 'normal'
-  },
-})
+const font = EStyleSheet.create({
+  eight:
+    Platform.OS === 'ios'
+      ? {
+          fontWeight: '800'
+        }
+      : {
+          fontWeight: 'bold'
+        },
+  seven:
+    Platform.OS === 'ios'
+      ? {
+          fontWeight: '700'
+        }
+      : {
+          fontWeight: 'bold'
+        },
+  six:
+    Platform.OS === 'ios'
+      ? {
+          fontWeight: '600'
+        }
+      : {
+          fontWeight: 'normal'
+        }
+});
 
 export default NavBar;
 

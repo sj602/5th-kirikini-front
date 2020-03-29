@@ -120,10 +120,5 @@
         "always"
       ]
     }
-  },
-  "rnpm": {
-    "assets": [
-      "./assets/fonts"
-    ]
   }
 }

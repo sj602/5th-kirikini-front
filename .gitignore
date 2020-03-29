@@ -64,12 +64,9 @@ buck-out/
 # Pods
 Pods/
 
-<<<<<<< HEAD
-=======
 # vscode
 .vscode/
 
 secrets_front.json
 
 sentry.properties
->>>>>>> develop-1
