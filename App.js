@@ -4,6 +4,16 @@ import AppNavigator from './src/screens';
 
 import configureStore from './src/store/configureStore';
 import { Provider } from 'react-redux';
+<<<<<<< HEAD
+
+const store = configureStore();
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <AppNavigator />
+    </Provider>    
+=======
 import SplashScreen from 'react-native-splash-screen';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -30,6 +40,7 @@ const App = props => {
     <Provider store={store}>
       <AppNavigator />
     </Provider>
+>>>>>>> develop-1
   );
 };
 

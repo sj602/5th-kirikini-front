@@ -62,6 +62,10 @@
     "react-redux": "^7.1.1",
     "readable-stream": "1.0.33",
     "redux": "^4.0.4",
+<<<<<<< HEAD
+    "redux-devtools-extension": "^2.13.8",
+    "redux-saga": "^1.1.1"
+=======
     "redux-actions": "^2.6.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-saga": "^1.1.1",
@@ -73,6 +77,7 @@
     "util": "~0.10.3",
     "vm-browserify": "0.0.4",
     "ws": "^7.2.0"
+>>>>>>> develop-1
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
