@@ -458,7 +458,11 @@ const WeeklyListToggled = props => {
     return (
       <Fragment>
         <View style={wLToggled.line}></View>
-        {Object.keys(meals).length > 0 &&
+        {
+          Object.keys(meals).length > 0 
+          &&
+          meals[week].length > 0
+          &&
           meals[week].map(meal => {
             if (meal.day == _day) {
               return (
