@@ -33,22 +33,22 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - kakao-login (2.1.1):
-    - KakaoOpenSDK (~> 1.18.0)
+  - kakao-login (2.4.1):
+    - KakaoOpenSDK (~> 1.20.0)
     - React
-  - KakaoOpenSDK (1.18.0):
-    - KakaoOpenSDK/KakaoCommon (= 1.18.0)
-    - KakaoOpenSDK/KakaoLink (= 1.18.0)
-    - KakaoOpenSDK/KakaoMessageTemplate (= 1.18.0)
-    - KakaoOpenSDK/KakaoNavi (= 1.18.0)
-    - KakaoOpenSDK/KakaoOpenSDK (= 1.18.0)
-  - KakaoOpenSDK/KakaoCommon (1.18.0)
-  - KakaoOpenSDK/KakaoLink (1.18.0):
+  - KakaoOpenSDK (1.20.0):
+    - KakaoOpenSDK/KakaoCommon (= 1.20.0)
+    - KakaoOpenSDK/KakaoLink (= 1.20.0)
+    - KakaoOpenSDK/KakaoMessageTemplate (= 1.20.0)
+    - KakaoOpenSDK/KakaoNavi (= 1.20.0)
+    - KakaoOpenSDK/KakaoOpenSDK (= 1.20.0)
+  - KakaoOpenSDK/KakaoCommon (1.20.0)
+  - KakaoOpenSDK/KakaoLink (1.20.0):
     - KakaoOpenSDK/KakaoCommon
-  - KakaoOpenSDK/KakaoMessageTemplate (1.18.0)
-  - KakaoOpenSDK/KakaoNavi (1.18.0):
+  - KakaoOpenSDK/KakaoMessageTemplate (1.20.0)
+  - KakaoOpenSDK/KakaoNavi (1.20.0):
     - KakaoOpenSDK/KakaoCommon
-  - KakaoOpenSDK/KakaoOpenSDK (1.18.0)
+  - KakaoOpenSDK/KakaoOpenSDK (1.20.0)
   - RCTRequired (0.61.2)
   - RCTTypeSafety (0.61.2):
     - FBLazyVector (= 0.61.2)
@@ -212,35 +212,35 @@ PODS:
     - React-cxxreact (= 0.61.2)
     - React-jsi (= 0.61.2)
   - React-jsinspector (0.61.2)
-  - react-native-camera (3.9.0):
+  - react-native-camera (3.19.0):
     - React
-    - react-native-camera/RCT (= 3.9.0)
-    - react-native-camera/RN (= 3.9.0)
-  - react-native-camera/RCT (3.9.0):
+    - react-native-camera/RCT (= 3.19.0)
+    - react-native-camera/RN (= 3.19.0)
+  - react-native-camera/RCT (3.19.0):
     - React
-  - react-native-camera/RN (3.9.0):
+  - react-native-camera/RN (3.19.0):
     - React
-  - react-native-fbsdk (1.1.1):
+  - react-native-fbsdk (1.1.2):
     - React
-    - react-native-fbsdk/Core (= 1.1.1)
-    - react-native-fbsdk/Login (= 1.1.1)
-    - react-native-fbsdk/Share (= 1.1.1)
-  - react-native-fbsdk/Core (1.1.1):
+    - react-native-fbsdk/Core (= 1.1.2)
+    - react-native-fbsdk/Login (= 1.1.2)
+    - react-native-fbsdk/Share (= 1.1.2)
+  - react-native-fbsdk/Core (1.1.2):
     - FBSDKCoreKit (= 5.8)
     - React
-  - react-native-fbsdk/Login (1.1.1):
+  - react-native-fbsdk/Login (1.1.2):
     - FBSDKLoginKit (= 5.8)
     - React
-  - react-native-fbsdk/Share (1.1.1):
+  - react-native-fbsdk/Share (1.1.2):
     - FBSDKShareKit (= 5.8)
     - React
-  - react-native-image-picker (2.2.0):
+  - react-native-image-picker (2.3.1):
     - React
-  - react-native-slider (2.0.7):
+  - react-native-slider (2.0.8):
     - React
   - react-native-splash-screen (3.2.0):
     - React
-  - react-native-webview (8.0.1):
+  - react-native-webview (8.1.2):
     - React
   - React-RCTActionSheet (0.61.2):
     - React-Core/RCTActionSheetHeaders (= 0.61.2)
@@ -277,20 +277,26 @@ PODS:
     - React-cxxreact (= 0.61.2)
     - React-jsi (= 0.61.2)
     - ReactCommon/jscallinvoker (= 0.61.2)
-  - RNCAsyncStorage (1.6.3):
+  - RNAppleAuthentication (0.1.1):
     - React
-  - RNDateTimePicker (2.1.0):
+  - RNCAsyncStorage (1.8.1):
     - React
-  - RNGestureHandler (1.5.3):
+  - RNDateTimePicker (2.2.3):
     - React
-  - RNReanimated (1.4.0):
+  - RNGestureHandler (1.6.0):
     - React
-  - RNScreens (2.0.0-alpha.11):
+  - RNOS (1.2.6):
     - React
-  - RNSentry (1.2.1):
+  - RNReanimated (1.7.0):
+    - React
+  - RNScreens (2.2.0):
+    - React
+  - RNSentry (1.3.3):
     - React
     - Sentry (~> 4.4.0)
   - RNSVG (9.13.6):
+    - React
+  - RNVectorIcons (6.6.0):
     - React
   - Sentry (4.4.3):
     - Sentry/Core (= 4.4.3)
@@ -334,13 +340,16 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/jscallinvoker (from `../node_modules/react-native/ReactCommon`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNAppleAuthentication (from `../node_modules/@invertase/react-native-apple-authentication`)"
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker/RNDateTimePicker.podspec`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNOS (from `../node_modules/react-native-os`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - RNSVG (from `../node_modules/react-native-svg`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -415,12 +424,16 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNAppleAuthentication:
+    :path: "../node_modules/@invertase/react-native-apple-authentication"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
   RNDateTimePicker:
     :path: "../node_modules/@react-native-community/datetimepicker/RNDateTimePicker.podspec"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNOS:
+    :path: "../node_modules/react-native-os"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -429,6 +442,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@sentry/react-native"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -442,8 +457,8 @@ SPEC CHECKSUMS:
   FBSDKShareKit: abc29e1bb4f9f59f679adf1ae191006d68455f96
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
-  kakao-login: 6a90ffc9448ca3641d92ba2aa2ac158bb899a319
-  KakaoOpenSDK: 016f24ab128c4e05c76a6a0965d6c379c0fafb58
+  kakao-login: 0a270ca2d3c68f6f0f14895bc3487b37d21203f5
+  KakaoOpenSDK: 797d97ec4a7074a23d7175147f13ec274c81c9b9
   RCTRequired: c639d59ed389cfb1f1203f65c2ea946d8ec586e2
   RCTTypeSafety: dc23fb655d6c77667c78e327bf661bc11e3b8aec
   React: 7e586e5d7bec12b91c1a096826b0fc9ab1da7865
@@ -453,12 +468,12 @@ SPEC CHECKSUMS:
   React-jsi: 32285a21b1b24c36060493ed3057a34677d58d09
   React-jsiexecutor: 8909917ff7d8f21a57e443a866fd8d4560e50c65
   React-jsinspector: 111d7d342b07a904c400592e02a2b958f1098b60
-  react-native-camera: c529629e3ecd017dcdacfd0355576ef489d9d198
-  react-native-fbsdk: b94a83971c496a35803f38b921aec6d637ba07b5
-  react-native-image-picker: 5f9eabde109955b2faf6ef5d5114a49a8ff45ded
-  react-native-slider: 718ed45db20672b26a92fcf4217ced078b1ac7ce
+  react-native-camera: 1f4c5be75a037b5573716a01d84ca0390c162954
+  react-native-fbsdk: c35d42169e64aaf66f01713c1e18d0674f7f6519
+  react-native-image-picker: 6a850c41f57f0848d918c2a77aedd7aa272ffa30
+  react-native-slider: 3a1cfd00c9c31068251b536822f7192e8d1d6b6f
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
-  react-native-webview: 52af6e38e861f449ce486db98ee54d39c682655e
+  react-native-webview: fcb5f377aadc216273300f452ee0d321fb85809b
   React-RCTActionSheet: 89b037c0fb7d2671607cb645760164e7e0c013f6
   React-RCTAnimation: e3cefa93c38c004c318f7ec04b883eb14b8b8235
   React-RCTBlob: d26ac0e313fbf14e7203473fd593ccaaeee8329e
@@ -469,16 +484,19 @@ SPEC CHECKSUMS:
   React-RCTText: e3ef6191cdb627855ff7fe8fa0c1e14094967fb8
   React-RCTVibration: fb54c732fd20405a76598e431aa2f8c2bf527de9
   ReactCommon: 5848032ed2f274fcb40f6b9ec24067787c42d479
-  RNCAsyncStorage: 3c304d1adfaea02ec732ac218801cb13897aa8c0
-  RNDateTimePicker: 9db00606d689f5653f08aa601c81b9d3266a0a19
-  RNGestureHandler: 02905abe54e1f6e59c081a10b4bd689721e17aa6
-  RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
-  RNScreens: ad3661f864ef18d952e9a4799b6791683e33c1fc
-  RNSentry: 9b1d983b2d5d1c215ba6490348fd2a4cc23a8a9d
+  RNAppleAuthentication: 9cca53676f5f010ffbf33eb99604383bfe0eb020
+  RNCAsyncStorage: e0dd7c8a36543b4ef84969acd9f8aceba3a92dc2
+  RNDateTimePicker: bc947b8ee2d74cf940df1915bf1dd3359f375c9f
+  RNGestureHandler: dde546180bf24af0b5f737c8ad04b6f3fa51609a
+  RNOS: 6f2f9a70895bbbfbdad7196abd952e7b01d45027
+  RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
+  RNScreens: 812b79d384e2bea7eebc4ec981469160d4948fd5
+  RNSentry: 86baf0c87120cd5eb491d073989f8cbc1a2174c6
   RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
+  RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   Sentry: 14bdd673870e8cf64932b149fad5bbbf39a9b390
   Yoga: 14927e37bd25376d216b150ab2a561773d57911f
 
-PODFILE CHECKSUM: 9bfb68705fd86a58ea8698a61d6e4b363ff1308c
+PODFILE CHECKSUM: 08e6a831a762baf32367c8bcae1e40928165964f
 
 COCOAPODS: 1.8.4

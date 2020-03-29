@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  YellowBox,
-  TextInput,
-  Button,
-  Alert
+  Platform, StyleSheet, Text,
+  View, Image, YellowBox,
+  TextInput, Alert, Button,
+  TouchableOpacity
 } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Input } from 'react-native-elements';
+import appleAuth, {
+  AppleButton,
+  AppleAuthRequestOperation,
+  AppleAuthRequestScope,
+  AppleAuthCredentialState,
+} from '@invertase/react-native-apple-authentication';
 import KakaoLogins from '@react-native-seoul/kakao-login';
 import {
   LoginButton,
@@ -20,9 +23,8 @@ import {
   GraphRequestManager
 } from 'react-native-fbsdk';
 import AsyncStorage from '@react-native-community/async-storage';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import axios from 'axios';
-import { loginSuccess } from '../store/auth/action';
+import { loginSuccess, loginMethod } from '../store/auth/action';
 import {
   deviceHeight,
   EMAIL_URL,
@@ -66,43 +68,35 @@ const Login = props => {
     setPassword(_password);
   };
 
-  const emailLogin = () => {
-    console.log(email, password);
+  const emailLogin = async () => {
     const data = {
       email,
       password
     };
-    axios
-      .post(EMAIL_URL, data, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      })
-      .then(response => {
-        console.log('test: ', response['data']);
-        if (response.status == 200) props.navigation.navigate('Home');
-        else if (response.status == 201) {
-          AsyncStorage.setItem('@jwt_access_token', response['data']);
-          props.navigation.navigate('Home');
-        } else {
-          console.log(response.data);
-        }
-      })
-      .catch(err => console.log(err));
+
+    const _result = await axios.post(EMAIL_URL, data, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
+    if (_result.status === 200) {
+      const jwt = _result["data"]
+      await AsyncStorage.multiSet([
+          ['@jwt_access_token', jwt['jwt_access_token']],
+          ['@jwt_refresh_token', jwt['jwt_refresh_token']],
+          ['@email', email]
+        ]);
+      props.navigation.navigate('Home')
+    } else {
+      console.log(_result.data)
+    }
   };
 
-  const autoLogin = () => {
-    let access_token = null,
-      refresh_token = null,
-      email = null;
-    AsyncStorage.multiGet([
+  const autoLogin = async () => {
+    await AsyncStorage.multiGet([
       '@jwt_access_token',
       '@jwt_refresh_token',
       '@email'
     ]).then(response => {
-      access_token = response[0][1];
-      refresh_token = response[1][1];
-      email = response[2][1];
+      const access_token = response[0][1];
+      const refresh_token = response[1][1];
+      const email = response[2][1];
 
       if (access_token !== null) {
         const body = {
@@ -171,6 +165,25 @@ const Login = props => {
         console.log(err);
       });
   };
+
+  const appleLogin = async () => {
+    if(appleAuth.isSupported) {
+      const appleAuthRequestResponse = await appleAuth.performRequest({
+        requestedOperation: AppleAuthRequestOperation.LOGIN,
+        requestedScopes: [AppleAuthRequestScope.EMAIL, AppleAuthRequestScope.FULL_NAME],
+      });
+      console.log(456)
+    
+      const credentialState = await appleAuth.getCredentialStateForUser(appleAuthRequestResponse.user);
+      console.log(789)
+      if (credentialState === AppleAuthCredentialState.AUTHORIZED) {
+        console.log(101010)
+        console.log(credentialState)
+      }
+    } else {
+      Alert.alert('애플 로그인은 iOS 13 이상부터 가능합니다')
+    }
+  }
 
   const fbLogin = result => {
     AccessToken.getCurrentAccessToken().then(data => {
@@ -256,39 +269,83 @@ const Login = props => {
 
         <Image style={styles.kirini} source={require('../img/kirini1.png')} />
       </View>
-      {/*<Text> // todo: 추후 추가
-          이메일
-        </Text>
-        <TextInput
-          style={{ width: 150, height: 80, borderColor: 'gray', borderWidth: 1 }}
-          onChangeText={text => onChangeEmail(text)}
+      <View style={{width: deviceWidth * 0.7, marginTop: 10}}>
+        <Input
+          placeholder='이메일'
+          leftIcon={
+            <Icon
+              type='font-awesome'
+              name='envelope'
+              size={16}
+              color='black'
+              style={{marginRight: 10}}
+            />
+          }
           value={email}
+          onChangeText={(text) => onChangeEmail(text)}
         />
-        <Text>
-          비밀번호
-        </Text>
-        <TextInput
-          style={{ width: 150, height: 80, borderColor: 'gray', borderWidth: 1 }}
-          onChangeText={text => onChangePassword(text)}
+        <Input
+          placeholder='비밀번호'
+          secureTextEntry={true}
+          leftIcon={
+            <Icon
+              type='font-awesome'
+              name='key'
+              size={16}
+              color='black'
+              style={{marginRight: 10}}
+            />
+          }
           value={password}
+          onChangeText={(text) => onChangePassword(text)}
         />
-        <TouchableOpacity
-          onPress={emailLogin}
-        >
-        <Button
-          title="로그인"
-          onPress={emailLogin}
-        />
-        </TouchableOpacity>*/}
+      </View>
+      <TouchableOpacity
+        onPress={emailLogin}
+        style={styles.loginButton}
+      >
+        <Text style={styles.txtKakao}>로그인</Text>
+      </TouchableOpacity>
       <Text style={styles.textKini}>{error}</Text>
 
+      <View style={{marginTop: 10}}>
+          <Button onPress={() => props.navigation.navigate("Register")} title="회원가입"></Button>
+      </View>
+
+      <View style={{flexDirection: "row", justifyContent: "center", marginTop: 10}}>
+        <View style={{flex: 1, borderBottomWidth: 1, borderBottomColor: 'gray', marginLeft: 80}}>
+        </View>
+        <Text style={{fontSize: 12, marginLeft: 20, marginRight: 20, color: 'gray'}}>
+          또는
+        </Text>
+        <View style={{flex: 1, borderBottomWidth: 1, borderBottomColor: 'gray', marginRight: 80}}>
+        </View>
+      </View>
+      
       <TouchableOpacity onPress={kakaoLogin} style={styles.kakaoButton}>
         <Image
           style={styles.kakaoLogo}
           source={require('../img/kakao_logo.png')}
         />
-        <Text style={styles.txtKakao}>카카오 로그인</Text>
+        <Text style={styles.txtKakao}>카카오 계정으로 시작</Text>
       </TouchableOpacity>
+
+      {
+        Platform.OS === 'ios'
+        ?
+        (
+          <TouchableOpacity onPress={appleLogin} style={styles.appleButton}>
+            <Image
+              style={styles.kakaoLogo}
+              source={require('../img/apple_logo.png')}
+            />
+            <Text style={styles.txtApple}>애플 계정으로 시작</Text>
+          </TouchableOpacity>
+        )
+        :
+        null
+      }
+      
 
       {/*<LoginButton
           publishPermissions={["email"]}
@@ -354,8 +411,34 @@ const styles = EStyleSheet.create({
     borderRadius: 0,
     borderWidth: 0
   },
-  kakaoButton: {
+  loginButton: {
     marginTop: '20rem',
+    flexDirection: 'row',
+    width: '250rem',
+    backgroundColor: 'lightgreen',
+    borderRadius: '30rem',
+    height: deviceHeight / 13,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  appleButton: {
+    marginTop: 20,
+    flexDirection: 'row',
+    width: '250rem',
+    backgroundColor: 'black',
+    borderRadius: '30rem',
+    height: deviceHeight / 13,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  txtApple: {
+    fontSize: '16rem',
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: weight.seven
+  },
+  kakaoButton: {
+    marginTop: 20,
     flexDirection: 'row',
     width: '250rem',
     backgroundColor: yellow.a,

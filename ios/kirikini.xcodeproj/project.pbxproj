@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* kirikiniTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* kirikiniTests.m */; };
-		00FB194E107840FEA670B923 /* JosefinSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E41C946648E499284D4F58A /* JosefinSans-Bold.ttf */; };
 		02BA3D9158684CA1A1D26D57 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC4FC04A2D94F9AA4635560 /* libz.tbd */; };
-		0E013E98D1434DD4B56227FD /* JosefinSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E73726A672AE4BEF96C403CD /* JosefinSans-SemiBold.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -20,11 +18,13 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* kirikiniTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* kirikiniTests.m */; };
-		7DD72D0B072343E4BFBA89B2 /* JosefinSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0B000DF44A34BD09C59D673 /* JosefinSans-Regular.ttf */; };
 		86D01C761F73AF4A1E13F3BA /* libPods-kirikini.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEC02537DA741669D84A9EF /* libPods-kirikini.a */; };
 		9A28E8D260278612933CB0CB /* libPods-kirikiniTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C02334C9CCC3835640E131 /* libPods-kirikiniTests.a */; };
 		B24ECC4CDBB6BAC62524A4DE /* libPods-kirikini-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A4C00F49DA020454ED551D /* libPods-kirikini-tvOS.a */; };
-		D9972E5A1F874F25AEC8AD99 /* Digitalt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7D038F30ADE542B592C0E55C /* Digitalt.otf */; };
+		EFC744B92421F8D100CFC00B /* Digitalt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7D038F30ADE542B592C0E55C /* Digitalt.otf */; };
+		EFC744BA2421F8D100CFC00B /* JosefinSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E41C946648E499284D4F58A /* JosefinSans-Bold.ttf */; };
+		EFC744BB2421F8D100CFC00B /* JosefinSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0B000DF44A34BD09C59D673 /* JosefinSans-Regular.ttf */; };
+		EFC744BC2421F8D100CFC00B /* JosefinSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E73726A672AE4BEF96C403CD /* JosefinSans-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +49,9 @@
 		00E356EE1AD99517003FC87E /* kirikiniTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kirikiniTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* kirikiniTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kirikiniTests.m; sourceTree = "<group>"; };
+		0C756CC9783C40FE9947F68C /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		0F05DB4F553A4A9DA99A8D0E /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		12A17CC6E89C41FD8998BA71 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* kirikini.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kirikini.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = kirikini/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = kirikini/AppDelegate.m; sourceTree = "<group>"; };
@@ -59,24 +62,38 @@
 		15193338EA3B663812FA1AD9 /* Pods-kirikini.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kirikini.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kirikini/Pods-kirikini.debug.xcconfig"; sourceTree = "<group>"; };
 		15A497CC7704DC18BB7ED02D /* Pods-kirikiniTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kirikiniTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kirikiniTests/Pods-kirikiniTests.debug.xcconfig"; sourceTree = "<group>"; };
 		18C02334C9CCC3835640E131 /* libPods-kirikiniTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kirikiniTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		24177DAF424744B9A8C1C830 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* kirikini-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kirikini-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* kirikini-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kirikini-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E41C946648E499284D4F58A /* JosefinSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "JosefinSans-Bold.ttf"; path = "../assets/fonts/JosefinSans-Bold.ttf"; sourceTree = "<group>"; };
+		3D8CA3CCDF0B4736B0A9D843 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		4C4FFDB0C034D7A88C346F65 /* libPods-kirikini-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kirikini-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6407C443C9AEC7D211FC3ED9 /* Pods-kirikini-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kirikini-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-kirikini-tvOS/Pods-kirikini-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		74A4C00F49DA020454ED551D /* libPods-kirikini-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kirikini-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7502E19200574C3FB88C0AA2 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		7612D1623CBFA2B67027857A /* Pods-kirikini-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kirikini-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-kirikini-tvOSTests/Pods-kirikini-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		7AD0358B9EC75BC8EB939E7A /* Pods-kirikini.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kirikini.release.xcconfig"; path = "Pods/Target Support Files/Pods-kirikini/Pods-kirikini.release.xcconfig"; sourceTree = "<group>"; };
 		7D038F30ADE542B592C0E55C /* Digitalt.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Digitalt.otf; path = ../assets/fonts/Digitalt.otf; sourceTree = "<group>"; };
+		8B4418D3611B4EC8B3846D61 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		943F56A85C864B439631BBC8 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		9A0CC391A71091F5BE927695 /* Pods-kirikiniTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kirikiniTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-kirikiniTests/Pods-kirikiniTests.release.xcconfig"; sourceTree = "<group>"; };
+		9C18227030D849E6A2C49E18 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		9CEC02537DA741669D84A9EF /* libPods-kirikini.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kirikini.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA09829BCA8E7014E2F8556E /* Pods-kirikini-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kirikini-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kirikini-tvOSTests/Pods-kirikini-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BCC4FC04A2D94F9AA4635560 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C0B000DF44A34BD09C59D673 /* JosefinSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "JosefinSans-Regular.ttf"; path = "../assets/fonts/JosefinSans-Regular.ttf"; sourceTree = "<group>"; };
+		C66D5C7B51F846B58FAC5619 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		CDBDE3C7149B44D38061C723 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		CF5E3D2693A7467E8E312E34 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		D6A533CEF6354A7B88B511B4 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		DB855238B0404924B4599317 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		E73726A672AE4BEF96C403CD /* JosefinSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "JosefinSans-SemiBold.ttf"; path = "../assets/fonts/JosefinSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		EBFE81A2733D48A880667C6C /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		EF35F06C2413821A00BA97D4 /* kirikini.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = kirikini.entitlements; path = kirikini/kirikini.entitlements; sourceTree = "<group>"; };
 		F1210F0197A2E09A2A746877 /* Pods-kirikini-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kirikini-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kirikini-tvOS/Pods-kirikini-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		F5C84D3CD21A4CAEAEED6A14 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +153,7 @@
 		13B07FAE1A68108700A75B9A /* kirikini */ = {
 			isa = PBXGroup;
 			children = (
+				EF35F06C2413821A00BA97D4 /* kirikini.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -183,6 +201,22 @@
 				2E41C946648E499284D4F58A /* JosefinSans-Bold.ttf */,
 				C0B000DF44A34BD09C59D673 /* JosefinSans-Regular.ttf */,
 				E73726A672AE4BEF96C403CD /* JosefinSans-SemiBold.ttf */,
+				12A17CC6E89C41FD8998BA71 /* AntDesign.ttf */,
+				3D8CA3CCDF0B4736B0A9D843 /* Entypo.ttf */,
+				EBFE81A2733D48A880667C6C /* EvilIcons.ttf */,
+				24177DAF424744B9A8C1C830 /* Feather.ttf */,
+				943F56A85C864B439631BBC8 /* FontAwesome.ttf */,
+				0F05DB4F553A4A9DA99A8D0E /* FontAwesome5_Brands.ttf */,
+				7502E19200574C3FB88C0AA2 /* FontAwesome5_Regular.ttf */,
+				9C18227030D849E6A2C49E18 /* FontAwesome5_Solid.ttf */,
+				CDBDE3C7149B44D38061C723 /* Fontisto.ttf */,
+				CF5E3D2693A7467E8E312E34 /* Foundation.ttf */,
+				0C756CC9783C40FE9947F68C /* Ionicons.ttf */,
+				D6A533CEF6354A7B88B511B4 /* MaterialCommunityIcons.ttf */,
+				C66D5C7B51F846B58FAC5619 /* MaterialIcons.ttf */,
+				8B4418D3611B4EC8B3846D61 /* Octicons.ttf */,
+				DB855238B0404924B4599317 /* SimpleLineIcons.ttf */,
+				F5C84D3CD21A4CAEAEED6A14 /* Zocial.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -310,7 +344,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1110;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -320,6 +354,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = MSW35G2APL;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -368,12 +403,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFC744B92421F8D100CFC00B /* Digitalt.otf in Resources */,
+				EFC744BA2421F8D100CFC00B /* JosefinSans-Bold.ttf in Resources */,
+				EFC744BB2421F8D100CFC00B /* JosefinSans-Regular.ttf in Resources */,
+				EFC744BC2421F8D100CFC00B /* JosefinSans-SemiBold.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				D9972E5A1F874F25AEC8AD99 /* Digitalt.otf in Resources */,
-				00FB194E107840FEA670B923 /* JosefinSans-Bold.ttf in Resources */,
-				7DD72D0B072343E4BFBA89B2 /* JosefinSans-Regular.ttf in Resources */,
-				0E013E98D1434DD4B56227FD /* JosefinSans-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,10 +568,42 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-kirikini/Pods-kirikini-resources.sh",
 				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -696,6 +763,9 @@
 			baseConfigurationReference = 15193338EA3B663812FA1AD9 /* Pods-kirikini.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = kirikini/kirikini.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = MSW35G2APL;
@@ -729,6 +799,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.prography.kirikini;
 				PRODUCT_NAME = kirikini;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -738,6 +809,9 @@
 			baseConfigurationReference = 7AD0358B9EC75BC8EB939E7A /* Pods-kirikini.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = kirikini/kirikini.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MSW35G2APL;
 				HEADER_SEARCH_PATHS = (
@@ -770,6 +844,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.prography.kirikini;
 				PRODUCT_NAME = kirikini;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

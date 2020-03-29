@@ -195,7 +195,7 @@ const Home = props => {
   const TouchGuideFade = () => {
     const [fadeAnim] = useState(new Animated.Value(1));
 
-    React.useEffect(() => {
+    useEffect(() => {
       Animated.timing(fadeAnim, {
         toValue: 0,
         duration: 3000

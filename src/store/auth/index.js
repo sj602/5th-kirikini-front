@@ -8,6 +8,7 @@ const initialState = {
         isLoggedIn: false,
     },
     loginStatus: 'INIT',
+    loginMethod: ''
 }
 
 export default handleActions({
@@ -37,4 +38,9 @@ export default handleActions({
             }
         });
     },
+    // [loginAction.loginMethod]: (state, action) => {
+    //     return produce(state, draft => {
+    //         draft.loginMethod = action.payload,
+    //     })
+    // }
 }, initialState);

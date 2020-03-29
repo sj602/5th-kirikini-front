@@ -267,7 +267,7 @@ const WeeklyReportToggled = () => {
                 '으로, 지난주보다 ' +
                 Math.abs(weekScore - previousWeekScore).toFixed(2) +
                 '점 올랐네요! 👏👏👏 아주 좋아요!🥰 발전하는 ' +
-                'zwon.han' +
+                userName +
                 '님의 모습 멋져요~!'
               : '주간 총점은 ' +
                 weekScore +
@@ -295,7 +295,7 @@ const WeeklyReportToggled = () => {
             </View>
           </View>
           <Text style={wrBox.txt}>
-            zwon.han님의 주간 끼니 횟수는 총 {mealCount}회이고, 하루 평균{' '}
+            {userName}님의 주간 끼니 횟수는 총 {mealCount}회이고, 하루 평균{' '}
             {avgMealCount}회의 끼니를 드셨어요~ {feedback && feedback[5][0]}
           </Text>
         </View>
@@ -318,7 +318,7 @@ const WeeklyReportToggled = () => {
             </View>
           </View>
           <Text style={wrBox.txt}>
-            일주일 동안 zwon.han님은 커피는 {coffeeCount}회,{' '}
+            일주일 동안 {userName}님은 커피는 {coffeeCount}회,{' '}
             {feedback && feedback[5][2]}음주는 {drinkCount}
             회로, {feedback && feedback[5][1]}
           </Text>
