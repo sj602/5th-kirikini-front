@@ -2,14 +2,11 @@ import React from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TouchableOpacity,
-  Dimensions,
   Platform
 } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
 import { RNCamera } from 'react-native-camera';
-// import CameraRoll from "@react-native-community/cameraroll";
 import ImagePicker from 'react-native-image-picker';
 import AsyncStorage from '@react-native-community/async-storage';
 import { mealSaved } from '../store/meal/action';
@@ -18,7 +15,6 @@ import {
   deviceHeight,
   gray,
   yellow,
-  kiriColor,
   weight
 } from '../utils/consts';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -52,8 +48,6 @@ const CameraScreen = props => {
           props.navigation.goBack();
         })
         .catch(err => console.log('image save failed'));
-
-      // CameraRoll.saveToCameraRoll( data.uri )
     }
   };
 
@@ -155,11 +149,6 @@ const cameraSt = EStyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     borderRadius: '30rem',
-    // shadowColor: '#000',
-    // shadowOffset: { width: 0, height: 5 },
-    // shadowOpacity: 0.2,
-    // shadowRadius: 7,
-    // elevation: 7,
     marginRight: '20rem'
   },
   button2: {
@@ -170,11 +159,6 @@ const cameraSt = EStyleSheet.create({
     alignItems: 'center',
     backgroundColor: yellow.a,
     borderRadius: '30rem'
-    // shadowColor: '#000',
-    // shadowOffset: { width: 0, height: 5 },
-    // shadowOpacity: 0.2,
-    // shadowRadius: 7,
-    // elevation: 7
   },
   text1: {
     textAlign: 'center',

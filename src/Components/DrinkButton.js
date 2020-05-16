@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Text, View, StyleSheet } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { gihoType } from '../store/meal/action';
-import { meal, gray, yellow } from '../utils/consts';
+import { gray, yellow } from '../utils/consts';
 import EStyleSheet from 'react-native-extended-stylesheet';
+
 const drinkTypes = [
   {
     key: 0,
@@ -17,12 +18,11 @@ const drinkTypes = [
 ];
 
 const DrinkTypeButton = props => {
-  const [selected, setSelected] = useState(null); // todo: state로 관리하는걸 redux로 관리?
+  const [selected, setSelected] = useState(null);
   const dispatch = useDispatch();
-  // const type = useSelector((store) => store.saved.gihoType);
 
-  const MakeDrinkTypeButton = () =>
-    drinkTypes.map(item => {
+  const MakeDrinkTypeButton = () => {
+    return drinkTypes.map(item => {
       return (
         <View key={item.key}>
           <View style={styles.buttonContainer}>
@@ -42,6 +42,8 @@ const DrinkTypeButton = props => {
         </View>
       );
     });
+  }
+
   return (
     <View style={styles.container}>
       <MakeDrinkTypeButton drinkTypes={drinkTypes} />
@@ -82,6 +84,7 @@ const styles = EStyleSheet.create({
     color: gray.c
   }
 });
+
 const font = EStyleSheet.create({
   eight:
     Platform.OS === 'ios'

@@ -1,14 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity,
-  Image,
-  Modal,
-  Platform,
+  View, Text, ScrollView,
+  TouchableOpacity, Image, Modal,
   Animated
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -16,20 +9,12 @@ import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 import { NavigationEvents } from 'react-navigation';
 import axios from 'axios';
-import NavBar from '../Components/NavBar';
+import NavBar from '../components/NavBar';
 import {
-  LOAD_MEALS_URL,
-  LOAD_YESTERDAY_RATING_URL,
-  LOAD_SINCE_MEAL_INFO_URL,
-  deviceHeight,
-  deviceWidth,
-  gray,
-  mealColor,
-  yellow,
-  kiriColor,
-  MENTS,
-  weight,
-  home
+  LOAD_MEALS_URL, LOAD_YESTERDAY_RATING_URL, LOAD_SINCE_MEAL_INFO_URL,
+  deviceHeight, deviceWidth, gray,
+  mealColor, yellow, kiriColor,
+  MENTS, weight, home
 } from '../utils/consts';
 
 const HomeCircles = props => {
@@ -106,7 +91,7 @@ const HomeCircles = props => {
                       resizeMode: 'contain',
                       position: 'absolute'
                     }}
-                    source={require('../img/iconCupSmall.png')}
+                    source={require('../../assets/img/iconCupSmall.png')}
                   />
                 )}
                 {item.gihoType === 1 && (
@@ -118,7 +103,7 @@ const HomeCircles = props => {
                       resizeMode: 'contain',
                       position: 'absolute'
                     }}
-                    source={require('../img/iconBeerSmall.png')}
+                    source={require('../../assets/img/iconBeerSmall.png')}
                   />
                 )}
               </TouchableOpacity>
@@ -171,7 +156,6 @@ const HomeCircles = props => {
 const Home = props => {
   const [meals, setMeals] = useState([]);
   const [todayScore, setTodayScore] = useState(null);
-  // const [todayKirini, setTodayKirini] = useState('../img/kirini1.png');
   const [ment, setMent] = useState('오늘 먹은 끼니를 등록해줘!');
   const [scoreCompare, setScoreCompare] = useState(null);
   const [name, setName] = useState('');
@@ -225,21 +209,21 @@ const Home = props => {
 
   const todayKirini = todayScore < 2 
                     ?
-                    require('../img/kirini1.png')
+                    require('../../assets/img/kirini1.png')
                     :
                     todayScore < 4
                     ?
-                    require('../img/kirini2.png')
+                    require('../../assets/img/kirini2.png')
                     :
                     todayScore < 6
                     ?
-                    require('../img/kirini3.png')
+                    require('../../assets/img/kirini3.png')
                     :
                     todayScore < 8
                     ?
-                    require('../img/kirini4.png')
+                    require('../../assets/img/kirini4.png')
                     :
-                    require('../img/kirini5.png')
+                    require('../../assets/img/kirini5.png')
 
   const onChangeMent = () => {
     const _get_rand = end => Math.floor(Math.random() * end);
@@ -468,12 +452,12 @@ const Home = props => {
             <View style={circles.container}>
               <Image
                 style={circles.sun}
-                source={require('../img/iconSunBigYellow.png')}
+                source={require('../../assets/img/iconSunBigYellow.png')}
               />
               {meals && <HomeCircles meals={meals} />}
               <Image
                 style={circles.moon}
-                source={require('../img/iconMoonBigYellow.png')}
+                source={require('../../assets/img/iconMoonBigYellow.png')}
               />
             </View>
           </ScrollView>
@@ -524,7 +508,6 @@ const modal = EStyleSheet.create({
   },
   img: {
     width: deviceWidth - 54,
-    // height: (deviceWidth * 70) / 100 - 20,
     height: (deviceHeight / 100) * 38 - 20,
     borderTopLeftRadius: '60rem',
     borderBottomRightRadius: '60rem',
@@ -534,7 +517,6 @@ const modal = EStyleSheet.create({
     flexDirection: 'column',
     width: '180rem',
     height: (deviceHeight / 100) * 14,
-    // backgroundColor: 'pink',
     position: 'absolute',
     top: (deviceHeight / 100) * 52,
     left: 27,
@@ -573,9 +555,7 @@ const balloonText = EStyleSheet.create({
   todayScore: {
     fontSize: '30rem',
     lineHeight: '32rem',
-    // fontFamily:'Kanit-ExtraBold',
     fontFamily: 'JosefinSans-Bold',
-    // fontFamily: 'Digitalt',
     color: yellow.b
   },
   scoreCompareTri: {
@@ -645,7 +625,6 @@ const balloonSt = EStyleSheet.create({
     borderTopLeftRadius: '70rem',
     borderBottomRightRadius: '70rem',
     backgroundColor: 'white'
-    // backgroundColor: 'blue'
   },
   topBar: {
     flex: 0.65,
@@ -668,7 +647,6 @@ const balloonSt = EStyleSheet.create({
     justifyContent: 'space-around'
   },
   lastMealTimeWrapper: {
-    // flex: 1,
     justifyContent: 'space-around',
     paddingLeft: '10rem',
     alignItems: 'flex-start'
@@ -676,18 +654,14 @@ const balloonSt = EStyleSheet.create({
   feedbackArea: {
     top: '5rem',
     flex: 1.7,
-    // boxSizing: 'border-box',
-    // paddingBottom: '5rem',
     justifyContent: 'center',
     alignItems: 'flex-end'
-    // backgroundColor: 'red'
   },
   tailContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingRight: deviceWidth / 10
-    // backgroundColor: 'blue'
   },
   tailWhiteArea: {
     width: deviceWidth / 3,
@@ -704,12 +678,10 @@ const balloonSt = EStyleSheet.create({
   kiriniContainer: {
     position: 'absolute',
     right: deviceWidth / 10,
-    // top: '-9rem',
     width: (deviceWidth * 3) / 10,
     height: deviceWidth / 3.5,
     alignSelf: 'center',
     justifyContent: 'center'
-    // backgroundColor: gray.a
   },
   kirini: {
     position: 'absolute',
@@ -723,14 +695,11 @@ const balloonSt = EStyleSheet.create({
 
 const circles = EStyleSheet.create({
   container: {
-    // width: '100%',
     alignItems: 'center',
     flexDirection: 'row',
     marginBottom: '15rem'
-    // backgroundColor: 'pink'
   },
   circlesContainer: {
-    // width: '100%',
     flexDirection: 'row',
     alignItems: 'center'
   },

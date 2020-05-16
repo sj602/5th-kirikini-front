@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect,  } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect, useDispatch } from 'react-redux';
@@ -6,15 +6,12 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Slider from '@react-native-community/slider';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
-import NavBar from '../Components/NavBar';
-import { mealRate } from '../store/meal/action';
+import NavBar from '../components/NavBar';
 import {
   RATE_MEAL_URL,
   deviceWidth,
   gray,
   yellow,
-  meal,
-  kiriColor,
   deviceHeight,
   weight,
   home
@@ -122,23 +119,23 @@ const Rate = props => {
         </View>
         <View style={mainImg.screen}>
           {mealToRate.length == 0 ? (
-            <Fragment>
+            <>
               <Image
                 style={mainImg.noMealKirini}
-                source={require('../img/kirini5.png')}
+                source={require('../../assets/img/kirini5.png')}
               />
               <Text style={mainImg.noMealAlert}>
                 채점할 끼니가 없습니다. {'\n'}
                 다른 유저의 끼니 등록을 기다려주세요!
               </Text>
-            </Fragment>
+            </>
           ) : (
-            <Fragment>
+            <>
               <Image
                 style={mainImg.img} // todo: 이미지 사이즈 조절
                 source={{ uri: mealToRate[0]['picURL'] }}
               />
-            </Fragment>
+            </>
           )}
         </View>
         {mealToRate.length == 0 ? null : (
@@ -218,16 +215,12 @@ const slider = EStyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-end',
-    // marginTop: 120
-    // backgroundColor: gray.a,
     paddingBottom: '20rem',
     position: 'relative',
     zIndex: 100
   },
   scoreInfoContainer: {
     flexDirection: 'column',
-    // backgroundColor: gray.b,
-    // justifyContent: 'center',
     top: '35rem',
     alignItems: 'center'
   },
@@ -241,7 +234,6 @@ const slider = EStyleSheet.create({
     position: 'relative',
     textAlign: 'center',
     fontWeight: weight.seven
-    // backgroundColor: 'red'
   },
   txtScoreJum: {
     fontSize: '20rem',
@@ -268,11 +260,6 @@ const slider = EStyleSheet.create({
     alignSelf: 'center',
     backgroundColor: 'white',
     borderRadius: '30rem'
-    // shadowColor: '#000',
-    // shadowOffset: { width: 0, height: 7 },
-    // shadowOpacity: 0.05,
-    // shadowRadius: 10,
-    // elevation: 20
   },
   txtSubmit: {
     textAlign: 'center',
@@ -296,17 +283,8 @@ const mainImg = EStyleSheet.create({
     textAlign: 'center'
   },
   screen: {
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // height: (deviceWidth * 70) / 100,
-
-    // borderTopLeftRadius: '70rem',
-    // borderBottomRightRadius: '70rem',
-    // borderColor: 'white',
-    // backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    // height: (deviceWidth * 70) / 100,
     height: (deviceHeight / 100) * 38,
     borderTopLeftRadius: '70rem',
     borderBottomRightRadius: '70rem',
@@ -330,16 +308,7 @@ const mainImg = EStyleSheet.create({
   },
   img: {
     top: 0,
-    // height: deviceWidth - 54,
-    // width: deviceHeight /2.7,
-    // width: (deviceWidth * 70) / 100 - 20,
-    // borderTopRightRadius: '60rem',
-    // borderBottomLeftRadius: '60rem',
-    // resizeMode: 'cover',
-    // transform: [{ rotate: '90deg' }]
-    // 이미지가 안 돌아가기 시작한다면 아래 코드 사용...
     width: '100%',
-    // height: deviceWidth * 75 /100 -20,
     height: (deviceHeight / 100) * 38 - 20,
     borderTopLeftRadius: '60rem',
     borderBottomRightRadius: '60rem',

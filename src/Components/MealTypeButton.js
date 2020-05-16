@@ -4,34 +4,11 @@ import {
   Text,
   View,
   TouchableOpacity,
-  StyleSheet,
   Dimensions,
-  Image
 } from 'react-native';
 import { mealType } from '../store/meal/action';
+import { gray, yellow, meal } from '../utils/consts';
 import EStyleSheet from 'react-native-extended-stylesheet';
-
-const deviceWidth = Dimensions.get('window').width;
-const deviceHeight = Dimensions.get('window').height;
-const gray = {
-  m: '#F2F9F2',
-  a: '#EAEAEA',
-  b: '#B7B7B7',
-  c: '#898989',
-  d: '#505151'
-};
-
-const yellow = {
-  a: '#FCDB3A',
-  b: '#F9CD15'
-};
-
-const meal = {
-  a: '#C8BAE5',
-  b: '#AFEAA2',
-  c: '#AFCAF2',
-  d: '#9CD8C8'
-};
 
 const mealTypes = [
   {
@@ -57,11 +34,10 @@ const mealTypes = [
 ];
 
 const MealTypeButton = props => {
-  const [selected, setSelected] = useState(null); // todo: state로 관리하는걸 redux로 관리?
+  const [selected, setSelected] = useState(null);
   const dispatch = useDispatch();
-  // const type = useSelector((store) => store.saved.mealType);
 
-  const MakeMealTypeButton = () =>
+  const MakeMealTypeButton = () => {
     mealTypes.map(item => {
       return (
         <TouchableOpacity
@@ -89,11 +65,12 @@ const MealTypeButton = props => {
       );
     });
 
-  return (
-    <View style={mealbtSt.container}>
-      <MakeMealTypeButton mealTypes={mealTypes} />
-    </View>
-  );
+    return (
+      <View style={mealbtSt.container}>
+        <MakeMealTypeButton mealTypes={mealTypes} />
+      </View>
+    );
+  }
 };
 
 const btColor = color =>
@@ -150,29 +127,15 @@ const mealbtSt = EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
-    // backgroundColor: 'pink'
   },
-
-  // selected: {
-  //   position: 'absolute',
-  //   width: 70,
-  //   height: 70,
-  //   marginBottom: 10,
-  //   borderRadius: 100,
-  //   borderWidth: 4,
-  //   borderColor: yellow.a,
-  //   backgroundColor: meal.c
-  // },
   txtUnselected: {
     position: 'absolute',
-    // left: '10.5rem',
     fontSize: '15.5rem',
     lineHeight: '21rem',
     color: gray.d
   },
   txtSelected: {
     position: 'absolute',
-    // left: '10.15rem',
     color: 'white',
     fontSize: '15.5rem'
   }

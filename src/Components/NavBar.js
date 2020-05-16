@@ -1,10 +1,9 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {
   View,
   Text,
   Image,
-  StyleSheet,
   Dimensions,
   TouchableOpacity
 } from 'react-native';
@@ -27,37 +26,35 @@ const navBarButtons = [
   {
     key: 0,
     text: '오늘',
-    iconSelected: require('../img/navIconS0.png'),
-    iconUnselected: require('../img/navIconU0.png'),
+    iconSelected: require('../../assets/img/navIconS0.png'),
+    iconUnselected: require('../../assets/img/navIconU0.png'),
     nav: 'Home'
   },
   {
     key: 1,
     text: '채점',
-    iconSelected: require('../img/navIconS1.png'),
-    iconUnselected: require('../img/navIconU1.png'),
+    iconSelected: require('../../assets/img/navIconS1.png'),
+    iconUnselected: require('../../assets/img/navIconU1.png'),
     nav: 'Rate'
   },
   {
     key: 2,
     text: '성적',
-    iconSelected: require('../img/navIconS2.png'),
-    iconUnselected: require('../img/navIconU2.png'),
+    iconSelected: require('../../assets/img/navIconS2.png'),
+    iconUnselected: require('../../assets/img/navIconU2.png'),
     nav: 'Summary'
   },
   {
     key: 3,
     text: '설정',
-    iconSelected: require('../img/navIconS3.png'),
-    iconUnselected: require('../img/navIconU3.png'),
+    iconSelected: require('../../assets/img/navIconS3.png'),
+    iconUnselected: require('../../assets/img/navIconU3.png'),
     nav: 'Settings'
   }
 ];
 
 const NavBar = props => {
   const [selected, setSelected] = useState(null);
-  // console.log('rendered:', selected);
-
   const selectedMenu = props.navigation.getParam('selectedMenu');
   useEffect(() => {
     if (props.default == true) {
@@ -79,7 +76,7 @@ const NavBar = props => {
           }}
         >
           {selected !== item.key && (
-            <Fragment>
+            <>
               <Image
                 style={{
                   height: 20,
@@ -90,11 +87,11 @@ const NavBar = props => {
                 source={item.iconUnselected}
               />
               <Text style={[navBar.txtUnselected, font.six]}>{item.text}</Text>
-            </Fragment>
+            </>
           )}
 
           {selected === item.key && (
-            <Fragment>
+            <>
               <Image
                 style={{
                   height: 20,
@@ -105,7 +102,7 @@ const NavBar = props => {
                 source={item.iconSelected}
               />
               <Text style={[navBar.txtSelected, font.eight]}>{item.text}</Text>
-            </Fragment>
+            </>
           )}
         </TouchableOpacity>
       );
@@ -135,13 +132,11 @@ const navBar = EStyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 7,
     elevation: 40
-    // overflow: 'hidden'
   },
   oneButton: {
     flex: 1,
     alignItems: 'center',
     paddingTop: '7rem'
-    // backgroundColor: 'red'
   },
   txtSelected: {
     color: yellow.a,
@@ -183,10 +178,3 @@ const font = EStyleSheet.create({
 });
 
 export default NavBar;
-
-// onPress={() => props.navigation.navigate('Rate')}
-{
-  /* <Image style={capsuleSt.circlePhoto} source={props.imgSrc} /> */
-}
-// imgSrc={require('../img/foodExample1.jpeg')}
-// onPress{() => { this.functionOne(); this.functionTwo();}}

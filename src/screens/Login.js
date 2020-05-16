@@ -259,15 +259,15 @@ const Login = props => {
             justifyContent: 'space-between'
           }}
         >
-          <Image style={styles.leaf} source={require('../img/leaf_left.png')} />
+          <Image style={styles.leaf} source={require('../../assets/img/leaf_left.png')} />
           <Image
             style={styles.leaf}
-            source={require('../img/leaf_right.png')}
+            source={require('../../assets/img/leaf_right.png')}
           />
         </View>
         <Text style={styles.txtKiri}>KIRIKINI</Text>
 
-        <Image style={styles.kirini} source={require('../img/kirini1.png')} />
+        <Image style={styles.kirini} source={require('../../assets/img/kirini1.png')} />
       </View>
       <View style={{width: deviceWidth * 0.7, marginTop: 10}}>
         <Input
@@ -325,7 +325,7 @@ const Login = props => {
       <TouchableOpacity onPress={kakaoLogin} style={styles.kakaoButton}>
         <Image
           style={styles.kakaoLogo}
-          source={require('../img/kakao_logo.png')}
+          source={require('../../assets/img/kakao_logo.png')}
         />
         <Text style={styles.txtKakao}>카카오 계정으로 시작</Text>
       </TouchableOpacity>
@@ -337,7 +337,7 @@ const Login = props => {
           <TouchableOpacity onPress={appleLogin} style={styles.appleButton}>
             <Image
               style={styles.kakaoLogo}
-              source={require('../img/apple_logo.png')}
+              source={require('../../assets/img/apple_logo.png')}
             />
             <Text style={styles.txtApple}>애플 계정으로 시작</Text>
           </TouchableOpacity>
@@ -366,7 +366,7 @@ const Login = props => {
           title="페이스북 로그인"
           style={styles.btnFbLogin} >
             <Image
-              source={require('../img/facebook_logo.jpg')}
+              source={require('../../assets/img/facebook_logo.jpg')}
               style={{width:30, height:30, margin:18}}
             />          
           <Text style={styles.txtFbLogin}>페이스북 로그인</Text>

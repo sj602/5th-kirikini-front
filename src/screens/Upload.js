@@ -17,9 +17,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { RNS3 } from 'react-native-aws3';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import axios from 'axios';
-import MealTypeButton from '../Components/MealTypeButton';
-import DrinkTypeButton from '../Components/DrinkButton';
-import Time from '../Components/Time';
+import MealTypeButton from '../components/MealTypeButton';
+import DrinkTypeButton from '../components/DrinkButton';
 import secretKey from '../../secrets_front.json';
 import {
   SAVE_MEAL_URL,
@@ -27,7 +26,6 @@ import {
   deviceHeight,
   gray,
   yellow,
-  kiriColor
 } from '../utils/consts';
 import { gihoType } from '../store/meal/action';
 
@@ -329,13 +327,7 @@ const slider = EStyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     bottom: 0,
-    // height: (deviceHeight / 9) * 2.2,
     width: '100%'
-    // shadowColor: '#000',
-    // shadowOffset: { width: 0, height: 5 },
-    // shadowOpacity: 0.2,
-    // shadowRadius: 7,
-    // elevation: 6
   },
   txtScore: {
     marginBottom: '10rem',
@@ -351,7 +343,6 @@ const mainImg = EStyleSheet.create({
   screen: {
     justifyContent: 'center',
     alignItems: 'center',
-    // height: (deviceWidth * 70) / 100,
     height: (deviceHeight / 100) * 38,
     borderTopLeftRadius: '70rem',
     borderBottomRightRadius: '70rem',
@@ -360,15 +351,7 @@ const mainImg = EStyleSheet.create({
     backgroundColor: 'white'
   },
   img: {
-    // height: deviceWidth - 54,
-    // width: (deviceWidth * 70) / 100 - 20,
-    // borderTopRightRadius: '60rem',
-    // borderBottomLeftRadius: '60rem',
-    // resizeMode: 'cover',
-    // transform: [{ rotate: '90deg' }]
-    // 이미지가 안 돌아가기 시작한다면 아래 코드 사용...
     width: '100%',
-    // height: (deviceWidth * 70) / 100 - 20,
     height: (deviceHeight / 100) * 38 - 20,
     borderTopLeftRadius: '60rem',
     borderBottomRightRadius: '60rem',

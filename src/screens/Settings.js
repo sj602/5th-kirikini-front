@@ -4,7 +4,7 @@ import { connect, useDispatch } from 'react-redux';
 import { WebView } from 'react-native-webview';
 import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
-import NavBar from '../Components/NavBar';
+import NavBar from '../components/NavBar';
 import { logout } from '../store/auth/action';
 import { PRIVACY_URL } from '../utils/consts';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -14,13 +14,9 @@ import appleAuth, {
   AppleAuthCredentialState,
 } from '@invertase/react-native-apple-authentication';
 import {
-  RATE_MEAL_URL,
   deviceWidth,
   gray,
-  yellow,
-  meal,
   kiriColor,
-  deviceHeight,
   weight,
   home
 } from '../utils/consts';

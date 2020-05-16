@@ -1,23 +1,20 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Text,
   View,
   TouchableOpacity,
   StyleSheet,
   ScrollView,
-  Dimensions,
-  Modal,
   Image,
-  Platform
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { connect, useDispatch } from 'react-redux';
 import { NavigationEvents } from 'react-navigation';
-import { LineChart, BarChart, PieChart } from 'react-native-chart-kit';
+import { BarChart, PieChart } from 'react-native-chart-kit';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { ScrollView as GestureHandlerScrollView } from 'react-native-gesture-handler';
 import axios from 'axios';
-import NavBar from '../Components/NavBar';
+import NavBar from '../components/NavBar';
 import { mealMonth } from '../store/meal/action';
 import {
   LOAD_MONTH_MEAL_URL,
@@ -380,7 +377,7 @@ const WeeklyReportToggled = () => {
       <View style={wrBox.lastContainer}>
         <View style={wrBox.scoreContainer}></View>
         <Text style={wrBox.txtIndex}>끼리니의 종합 피드백</Text>
-        <Image style={wrBox.kirini} source={require('../img/kiriniLeaf.png')} />
+        <Image style={wrBox.kirini} source={require('../../assets/img/kiriniLeaf.png')} />
         <View>
           <Text style={wrBox.txt}>
             {feedback[0]}
@@ -456,7 +453,7 @@ const WeeklyListToggled = props => {
   const renderList = _day => {
     // 0:월, 1:화, ... , 6:일
     return (
-      <Fragment>
+      <>
         <View style={wLToggled.line}></View>
         {
           Object.keys(meals).length > 0 
@@ -522,11 +519,11 @@ const WeeklyListToggled = props => {
                     source={
                       meal.gihoType == 0
                       ? 
-                      require('../img/iconCupSmall.png')
+                      require('../../assets/img/iconCupSmall.png')
                       : 
                       meal.gihoType == 1
                       ?
-                      require('../img/iconBeerSmall.png')
+                      require('../../assets/img/iconBeerSmall.png')
                       :
                       null
                     }
@@ -535,7 +532,7 @@ const WeeklyListToggled = props => {
               );
             }
           })}
-      </Fragment>
+      </>
     );
   };
 
@@ -594,11 +591,11 @@ const WeeklyListToggled = props => {
       <View style={wLToggled.sunMoonContainer}>
         <Image
           style={wLToggled.sun}
-          source={require('../img/iconSunBigYellow.png')}
+          source={require('../../assets/img/iconSunBigYellow.png')}
         />
         <Image
           style={wLToggled.moon}
-          source={require('../img/iconMoonBigYellow.png')}
+          source={require('../../assets/img/iconMoonBigYellow.png')}
         />
       </View>
       <MakeADay weeklyListArray={weeklyListArray} />
