@@ -1,159 +1,24 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View, Text, ScrollView,
-  TouchableOpacity, Image, Modal,
-  Animated
+  TouchableOpacity, Image,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 import { NavigationEvents } from 'react-navigation';
 import axios from 'axios';
+import HomeCircles from '../components/Home/HomeCircles';
+import TouchGuideFade from '../components/Home/TouchGuideFade';
 import NavBar from '../components/NavBar';
 import {
   LOAD_MEALS_URL, LOAD_YESTERDAY_RATING_URL, LOAD_SINCE_MEAL_INFO_URL,
-  deviceHeight, deviceWidth, gray,
-  mealColor, yellow, kiriColor,
+  DEVICE_WIDTH, gray,
+  yellow, kiriColor,
   MENTS, weight, home
 } from '../utils/consts';
 
-const HomeCircles = props => {
-  const [selectedMeal, setSelectedMeal] = useState({});
-  const [modalVisible, setModalVisible] = useState(false);
-
-  return (
-    <View style={circles.circlesContainer}>
-      <View
-        style={{
-          position: 'absolute',
-          left: 0,
-          borderBottomColor: 'white',
-          borderBottomWidth: 3,
-          width: '100%'
-        }}
-      />
-      <View style={{ width: deviceHeight / 40 }} />
-      {props.meals &&
-        props.meals.map(item => {
-          var circleColor = mealColor.a;
-          if (item.mealType === 0) {
-            circleColor = mealColor.a;
-          }
-          if (item.mealType === 1) {
-            circleColor = mealColor.b;
-          }
-          if (item.mealType === 2) {
-            circleColor = mealColor.c;
-          }
-          if (item.mealType === 3) {
-            circleColor = mealColor.d;
-          }
-
-          return (
-            <Fragment key={item.id}>
-              <TouchableOpacity
-                onPress={() => {
-                  setSelectedMeal(item);
-                  setModalVisible(!modalVisible);
-                }}
-                style={{
-                  backgroundColor: circleColor,
-                  borderRadius: 300,
-                  width:
-                    item.average_rate * (deviceHeight / 110) +
-                    deviceHeight / 15,
-                  height:
-                    item.average_rate * (deviceHeight / 110) +
-                    deviceHeight / 15,
-                  marginRight: deviceHeight / 40,
-
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}
-              >
-                <Image
-                  style={{
-                    zIndex: 20,
-                    width: deviceHeight / 15,
-                    height: deviceHeight / 15,
-                    borderRadius: 200,
-                    resizeMode: 'cover'
-                  }}
-                  source={{ uri: item.picURL }}
-                />
-
-                {item.gihoType === 0 && (
-                  <Image
-                    style={{
-                      zIndex: 20,
-                      width: deviceHeight / 37,
-                      height: deviceHeight / 37,
-                      resizeMode: 'contain',
-                      position: 'absolute'
-                    }}
-                    source={require('../../assets/img/iconCupSmall.png')}
-                  />
-                )}
-                {item.gihoType === 1 && (
-                  <Image
-                    style={{
-                      zIndex: 20,
-                      width: deviceHeight / 37,
-                      height: deviceHeight / 37,
-                      resizeMode: 'contain',
-                      position: 'absolute'
-                    }}
-                    source={require('../../assets/img/iconBeerSmall.png')}
-                  />
-                )}
-              </TouchableOpacity>
-
-              <Modal animation="fade" transparent={true} visible={modalVisible}>
-                <TouchableOpacity
-                  onPress={() => {
-                    setModalVisible(!modalVisible);
-                  }}
-                  style={{ width: deviceWidth, height: deviceHeight }}
-                >
-                  <View style={modal.view}>
-                    <Image
-                      source={{ uri: selectedMeal.picURL }}
-                      style={modal.img}
-                    />
-                  </View>
-                  <View style={modal.info}>
-                    <View style={modal.scoreContainer}>
-                      <Text style={modal.score}>
-                        {Math.round(selectedMeal.average_rate * 10) / 10}
-                      </Text>
-                      <Text style={modal.jum}>점</Text>
-                    </View>
-                    <Text style={modal.time}>
-                      {Object.keys(selectedMeal).length > 0
-                        ? selectedMeal.created_at.slice(11, 13) < 12
-                          ? '오전 ' +
-                            selectedMeal.created_at.slice(11, 13) +
-                            '시 ' +
-                            selectedMeal.created_at.slice(14, 16) +
-                            '분'
-                          : '오후 ' +
-                            Number(selectedMeal.created_at.slice(11, 13) - 12) +
-                            '시 ' +
-                            selectedMeal.created_at.slice(14, 16) +
-                            '분'
-                        : null}
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-              </Modal>
-            </Fragment>
-          );
-        })}
-    </View>
-  );
-};
-
-const Home = props => {
+const Home = ({navigation}) => {
   const [meals, setMeals] = useState([]);
   const [todayScore, setTodayScore] = useState(null);
   const [ment, setMent] = useState('오늘 먹은 끼니를 등록해줘!');
@@ -175,23 +40,6 @@ const Home = props => {
     calculateTodayScore();
     loadSinceMealInfo();
   }, [meals]);
-
-  const TouchGuideFade = () => {
-    const [fadeAnim] = useState(new Animated.Value(1));
-
-    useEffect(() => {
-      Animated.timing(fadeAnim, {
-        toValue: 0,
-        duration: 3000
-      }).start();
-    }, []);
-
-    return (
-      <Animated.View style={{ opacity: fadeAnim, alignSelf: 'center' }}>
-        <Text style={balloonText.touchKirini}>끼리니 눌러서 끼니 추가 👉</Text>
-      </Animated.View>
-    );
-  };
 
   const calculateTodayScore = () => {
     if (meals.length > 0) {
@@ -350,7 +198,7 @@ const Home = props => {
     );
   };
 
-  const today = (
+  return (
     <View style={{ backgroundColor: kiriColor, flex: 1 }}>
       <NavigationEvents
         onWillFocus={() => {
@@ -437,7 +285,7 @@ const Home = props => {
               <TouchGuideFade />
               <TouchableOpacity
                 style={balloonSt.kiriniContainer}
-                onPress={() => props.navigation.navigate('Upload')}
+                onPress={() => navigation.navigate('Upload')}
               >
                 <Image
                   style={balloonSt.kirini}
@@ -464,10 +312,9 @@ const Home = props => {
         </View>
       </View>
 
-      <NavBar navigation={props.navigation} default={true} />
+      <NavBar navigation={navigation} default={true} />
     </View>
   );
-  return today;
 };
 
 // 공통적으로 쓰일? View 스타일 (화면 분할 등)
@@ -493,60 +340,6 @@ const styles = EStyleSheet.create({
     color: gray.d,
     lineHeight: '32rem',
     fontWeight: weight.eight
-  }
-});
-
-const modal = EStyleSheet.create({
-  view: {
-    flex: 0.414,
-    top: home.margin,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    borderTopLeftRadius: '70rem',
-    borderBottomRightRadius: '70rem'
-  },
-  img: {
-    width: deviceWidth - 54,
-    height: (deviceHeight / 100) * 38 - 20,
-    borderTopLeftRadius: '60rem',
-    borderBottomRightRadius: '60rem',
-    resizeMode: 'cover'
-  },
-  info: {
-    flexDirection: 'column',
-    width: '180rem',
-    height: (deviceHeight / 100) * 14,
-    position: 'absolute',
-    top: (deviceHeight / 100) * 52,
-    left: 27,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  scoreContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  score: {
-    fontSize: '32rem',
-    lineHeight: '32rem',
-    fontFamily: 'JosefinSans-Bold',
-    color: yellow.b,
-    textAlign: 'center'
-  },
-  jum: {
-    fontSize: '25rem',
-    lineHeight: '32rem',
-    fontWeight: weight.eight,
-    color: yellow.b,
-    textAlign: 'center',
-    bottom: '2rem'
-  },
-  time: {
-    fontSize: '15rem',
-    color: gray.c,
-    fontWeight: weight.seven
   }
 });
 
@@ -605,7 +398,7 @@ const balloonText = EStyleSheet.create({
     fontSize: '15rem',
     color: gray.c,
     alignSelf: 'center',
-    right: deviceWidth / 3,
+    right: DEVICE_WIDTH / 3,
     top: '7rem',
     fontWeight: weight.six
   }
@@ -620,8 +413,8 @@ const balloonSt = EStyleSheet.create({
   balloon: {
     flex: 1.8,
     flexDirection: 'column',
-    width: deviceWidth,
-    padding: deviceWidth / 10,
+    width: DEVICE_WIDTH,
+    padding: DEVICE_WIDTH / 10,
     borderTopLeftRadius: '70rem',
     borderBottomRightRadius: '70rem',
     backgroundColor: 'white'
@@ -661,33 +454,33 @@ const balloonSt = EStyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingRight: deviceWidth / 10
+    paddingRight: DEVICE_WIDTH / 10
   },
   tailWhiteArea: {
-    width: deviceWidth / 3,
-    height: deviceWidth / 5,
+    width: DEVICE_WIDTH / 3,
+    height: DEVICE_WIDTH / 5,
     backgroundColor: 'white'
   },
   tailKiriColorArea: {
     position: 'absolute',
-    width: deviceWidth / 3,
-    height: deviceWidth / 3,
+    width: DEVICE_WIDTH / 3,
+    height: DEVICE_WIDTH / 3,
     borderTopLeftRadius: '70rem',
     backgroundColor: kiriColor
   },
   kiriniContainer: {
     position: 'absolute',
-    right: deviceWidth / 10,
-    width: (deviceWidth * 3) / 10,
-    height: deviceWidth / 3.5,
+    right: DEVICE_WIDTH / 10,
+    width: (DEVICE_WIDTH * 3) / 10,
+    height: DEVICE_WIDTH / 3.5,
     alignSelf: 'center',
     justifyContent: 'center'
   },
   kirini: {
     position: 'absolute',
     marginLeft: 40,
-    width: (deviceWidth * 3) / 10,
-    height: deviceWidth / 3,
+    width: (DEVICE_WIDTH * 3) / 10,
+    height: DEVICE_WIDTH / 3,
     alignSelf: 'center',
     resizeMode: 'contain'
   }

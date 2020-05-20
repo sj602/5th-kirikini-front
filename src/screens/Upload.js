@@ -1,13 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  Text,
-  View,
-  StyleSheet,
-  Dimensions,
-  ScrollView,
-  Image,
-  Alert,
-  Platform
+  Text, View, Image,
+  Alert, Platform
 } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
 import { NavigationEvents } from 'react-navigation';
@@ -17,20 +11,17 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { RNS3 } from 'react-native-aws3';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import axios from 'axios';
-import MealTypeButton from '../components/MealTypeButton';
-import DrinkTypeButton from '../components/DrinkButton';
-import secretKey from '../../secrets_front.json';
+import MealTypeButton from '../components/Upload/MealTypeButton';
+import DrinkTypeButton from '../components/Upload/DrinkTypeButton';
 import {
-  SAVE_MEAL_URL,
-  deviceWidth,
-  deviceHeight,
-  gray,
-  yellow,
+  SAVE_MEAL_URL, DEVICE_WIDTH, DEVICE_HEIGHT,
+  gray, yellow
 } from '../utils/consts';
 import { gihoType } from '../store/meal/action';
+import secretKey from '../../secrets_front.json';
 
 // AWS S3
-const s3_options = {
+const S3_OPTIONS = {
   keyPrefix: 'uploads/',
   bucket: 'kirikini',
   region: 'ap-northeast-2',
@@ -39,58 +30,71 @@ const s3_options = {
   successActionStatus: 201
 };
 
+const calcPhotoTime = (meal_just_taken) => {
+  if (meal_just_taken != null) {
+    const time =
+    meal_just_taken.timestamp == null
+      ? ''
+      : Number(meal_just_taken.timestamp.slice(11, 13)) < 12
+      ? ' 오전 ' +
+        Number(meal_just_taken.timestamp.slice(11, 13)) +
+        '시 ' +
+        meal_just_taken.timestamp.slice(14, 16) +
+        '분'
+      : ' 오후 ' +
+        Number(meal_just_taken.timestamp.slice(11, 13) - 12) +
+        '시 ' +
+        meal_just_taken.timestamp.slice(14, 16) +
+        '분';
+    const date =
+    meal_just_taken.timestamp == null
+      ? ''
+      : meal_just_taken.timestamp.slice(0, 4) +
+        '년 ' +
+        meal_just_taken.timestamp.slice(5, 7) +
+        '월 ' +
+        meal_just_taken.timestamp.slice(8, 10) +
+        '일 ' +
+        time;
+
+    return [time, date];
+  }
+  else return [null, null];
+}
+
 const Upload = props => {
   const [mealScore, setMealScore] = useState(5);
   const [mealImage, setMealImage] = useState('');
   const dispatch = useDispatch();
 
-  const time =
-    props.saved.timestamp == null
-      ? ''
-      : Number(props.saved.timestamp.slice(11, 13)) < 12
-      ? ' 오전 ' +
-        Number(props.saved.timestamp.slice(11, 13)) +
-        '시 ' +
-        props.saved.timestamp.slice(14, 16) +
-        '분'
-      : ' 오후 ' +
-        Number(props.saved.timestamp.slice(11, 13) - 12) +
-        '시 ' +
-        props.saved.timestamp.slice(14, 16) +
-        '분';
-  const date =
-    props.saved.timestamp == null
-      ? ''
-      : props.saved.timestamp.slice(0, 4) +
-        '년 ' +
-        props.saved.timestamp.slice(5, 7) +
-        '월 ' +
-        props.saved.timestamp.slice(8, 10) +
-        '일 ' +
-        time;
+  useEffect(() => {
+    
+  }, [props.saved])
+  console.log(props)
+  const meal_photo_uri = props.meal_just_taken ? props.meal_just_taken.file.uri : null;
+  const [time, date] = calcPhotoTime(props.meal_just_taken);
 
-  const updateMealImage = () => {
-    AsyncStorage.getItem('@mealImage')
-      .then(uri => setMealImage(uri))
-      .catch(err => console.log('load image failed'));
-  };
+  // const updateMealImage = () => {
+  //   AsyncStorage.getItem('@mealImage')
+  //     .then(uri => setMealImage(uri))
+  //     .catch(err => console.log('load image failed'));
+  // };
 
   const onValueChange = mealScore => {
     setMealScore(mealScore);
   };
 
-  const upload = () => {
+  const photoUpload = () => {
     if (props.saved.mealType == null)
       return Alert.alert('끼니 형태를 선택해주세요!', '', [
         { text: '확인', onPress: () => console.log() }
       ]);
-    if (props.saved.file == {})
+    if (props.saved.meal_just_taken == {})
       return Alert.alert('끼니 사진을 찍어주세요!', '', [
         { text: '확인', onPress: () => console.log() }
       ]);
 
-    const { file } = props.saved;
-    RNS3.put(file, s3_options).then(response => {
+    RNS3.put(file, S3_OPTIONS).then(response => {
       if (response.status !== 201)
         throw new Error('Failed to upload image to S3');
 
@@ -142,7 +146,7 @@ const Upload = props => {
 
   return (
     <View style={{ backgroundColor: '#F2F9F2', flex: 1 }}>
-      <NavigationEvents onWillFocus={() => updateMealImage()} />
+      {/*<NavigationEvents onWillFocus={() => updateMealImage()} />*/}
       <View style={styles.container}>
         {Platform.OS === 'ios' ? null : <View style={styles.topMargin} />}
         <View style={styles.mintbackground} />
@@ -150,7 +154,7 @@ const Upload = props => {
           <Text style={[styles.txtBigTitle, font.eight]}>끼니 제출</Text>
         </View>
         <View>
-          {mealImage ? ( // todo: mealImage 없을때 '터치해서 끼니 촬영'이 안나옴
+          {meal_photo_uri !== null ? (
             <TouchableOpacity
               onPress={() => props.navigation.navigate('Camera')}
               activeOpacity={0.6}
@@ -158,7 +162,7 @@ const Upload = props => {
             >
               <Image
                 style={mainImg.img} // todo: 이미지 사이즈 조절
-                source={{ uri: mealImage }}
+                source={{ uri: meal_photo_uri }}
                 rotate="90deg"
               />
             </TouchableOpacity>
@@ -202,7 +206,7 @@ const Upload = props => {
       <View style={styles.submitButton}>
         <TouchableOpacity
           style={styles.submitTouchable}
-          onPress={() => upload()}
+          onPress={() => photoUpload()}
         >
           <Text style={[styles.txtSubmit, font.seven]}>확인</Text>
         </TouchableOpacity>
@@ -210,6 +214,7 @@ const Upload = props => {
     </View>
   );
 };
+
 const font = EStyleSheet.create({
   eight:
     Platform.OS === 'ios'
@@ -262,8 +267,8 @@ const styles = EStyleSheet.create({
     justifyContent: 'flex-start',
     position: 'absolute',
     bottom: 0,
-    height: (deviceHeight / 9) * 5,
-    width: deviceWidth,
+    height: (DEVICE_HEIGHT / 9) * 5,
+    width: DEVICE_WIDTH,
     paddingTop: 16,
     paddingLeft: 17,
     paddingRight: 17,
@@ -280,8 +285,8 @@ const styles = EStyleSheet.create({
   submitButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: deviceHeight / 9,
-    width: deviceWidth,
+    height: DEVICE_HEIGHT / 9,
+    width: DEVICE_WIDTH,
     paddingLeft: 10,
     paddingRight: 10,
     borderTopLeftRadius: 35,
@@ -297,8 +302,8 @@ const styles = EStyleSheet.create({
   submitTouchable: {
     justifyContent: 'flex-start',
     alignItems: 'center',
-    height: deviceHeight / 9,
-    width: deviceWidth,
+    height: DEVICE_HEIGHT / 9,
+    width: DEVICE_WIDTH,
     borderTopLeftRadius: 35,
     borderTopRightRadius: 35
   },
@@ -343,7 +348,7 @@ const mainImg = EStyleSheet.create({
   screen: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: (deviceHeight / 100) * 38,
+    height: (DEVICE_HEIGHT / 100) * 38,
     borderTopLeftRadius: '70rem',
     borderBottomRightRadius: '70rem',
     borderColor: gray.m,
@@ -352,7 +357,7 @@ const mainImg = EStyleSheet.create({
   },
   img: {
     width: '100%',
-    height: (deviceHeight / 100) * 38 - 20,
+    height: (DEVICE_HEIGHT / 100) * 38 - 20,
     borderTopLeftRadius: '60rem',
     borderBottomRightRadius: '60rem',
     resizeMode: 'cover'
@@ -371,5 +376,5 @@ Upload.navigationOptions = ({ navigation }) => ({
 });
 
 export default connect(state => ({
-  saved: state.meal.saved
+  meal_just_taken: state.meal.meal_just_taken
 }))(Upload);

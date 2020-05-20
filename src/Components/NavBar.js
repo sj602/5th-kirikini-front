@@ -20,8 +20,8 @@ const yellow = {
   b: '#F9CD15'
 };
 
-const deviceWidth = Dimensions.get('window').width;
-const deviceHeight = Dimensions.get('window').height;
+const DEVICE_WIDTH = Dimensions.get('window').width;
+const DEVICE_HEIGHT = Dimensions.get('window').height;
 const navBarButtons = [
   {
     key: 0,
@@ -120,8 +120,8 @@ const navBar = EStyleSheet.create({
   roundContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    height: deviceHeight / 9,
-    width: deviceWidth,
+    height: DEVICE_HEIGHT / 9,
+    width: DEVICE_WIDTH,
     paddingLeft: '7rem',
     paddingRight: '7rem',
     borderTopLeftRadius: '37rem',

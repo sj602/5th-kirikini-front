@@ -1,7 +1,7 @@
 export const mealAction = {
     saga: 'MEAL_SAGA',
     today: 'MEAL_TODAY',
-    saved: 'MEAL_SAVED',
+    saveMeal: 'SAVE_MEAL',
     mealType: 'MEAL_TYPE',
     gihoType: 'GIHO_TYPE',
     month_meal: 'MONTH_MEAL',
@@ -22,8 +22,8 @@ export const mealMonth = (meals) => ({
     meals: meals
 });
 
-export const mealSaved = (file, timestamp) => ({
-    type: mealAction.saved,
+export const saveMeal = (file, timestamp) => ({
+    type: mealAction.saveMeal,
     file: file,
     timestamp: timestamp
 });

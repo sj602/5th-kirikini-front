@@ -26,7 +26,7 @@ export default handleActions({
             }
         });
     },
-    [mealAction.saved]: (state, action) => {
+    [mealAction.saveMeal]: (state, action) => {
         console.log("action: ", action)
         return produce(state, draft => {
             draft.saved = {

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { gihoType } from '../store/meal/action';
-import { gray, yellow } from '../utils/consts';
+import { gihoType } from '../../store/meal/action';
+import { gray, yellow } from '../../utils/consts';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const drinkTypes = [

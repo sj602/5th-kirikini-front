@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Text,
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-  Image,
+  Text, View, TouchableOpacity,
+  StyleSheet, ScrollView, Image,
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { connect, useDispatch } from 'react-redux';
@@ -17,19 +13,13 @@ import axios from 'axios';
 import NavBar from '../components/NavBar';
 import { mealMonth } from '../store/meal/action';
 import {
-  LOAD_MONTH_MEAL_URL,
-  LOAD_WEEK_REPORT_URL,
-  deviceWidth,
-  gray,
-  yellow,
-  mealColor,
-  meal,
-  kiriColor,
-  screenWidth,
-  home,
-  weight,
-  deviceHeight
+  LOAD_MONTH_MEAL_URL, LOAD_WEEK_REPORT_URL, DEVICE_WIDTH,
+  gray, yellow, mealColor,
+  meal, home, weight,
+  DEVICE_HEIGHT, WEEK_LIST,
+  CHART_CONFIG_2, CHART_CONFIG_3, GRAPH_STYLE
 } from '../utils/consts';
+import { calcTime, calcWeekOfYear } from "../utils/functions"
 
 // 주간 레포트 시작 ------------------------------------------------------------------
 const WeeklyReportToggled = () => {
@@ -202,43 +192,6 @@ const WeeklyReportToggled = () => {
           }
         ];
 
-  const chartConfig1 = {
-    backgroundGradientFrom: '#1E2923',
-    backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: '#08130D',
-    backgroundGradientToOpacity: 0,
-
-    color: (opacity = 1) => `rgba(0,0,0, ${opacity})`,
-    strokeWidth: 2, // optional, default 3
-    barPercentage: 0.5
-  };
-
-  const chartConfig2 = {
-    backgroundGradientFrom: '#1E2923',
-    backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: '#08130D',
-    backgroundGradientToOpacity: 0,
-
-    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-    strokeWidth: 2, // optional, default 3
-    barPercentage: 0.5
-  };
-
-  const chartConfig3 = {
-    backgroundGradientFrom: '#1E2923',
-    backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: '#08130D',
-    backgroundGradientToOpacity: 0.5,
-
-    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-    strokeWidth: 2, // optional, default 3
-    barPercentage: 0.5
-  };
-
-  const graphStyle = {
-    borderRadius: 16
-  };
-
   const toggleContent = (
     <View>
       <View style={wr.container}>
@@ -335,10 +288,10 @@ const WeeklyReportToggled = () => {
           >
             <PieChart
               data={data3}
-              width={deviceWidth}
+              width={DEVICE_WIDTH}
               height={220}
-              paddingLeft={deviceWidth / 9}
-              chartConfig={chartConfig3}
+              paddingLeft={DEVICE_WIDTH / 9}
+              chartConfig={CHART_CONFIG_3}
               accessor="population"
               backgroundColor="transparent"
               absolute
@@ -352,11 +305,11 @@ const WeeklyReportToggled = () => {
             }}
           >
             <BarChart
-              style={graphStyle}
+              style={GRAPH_STYLE}
               data={data2}
               width={300}
               height={220}
-              chartConfig={chartConfig2}
+              chartConfig={CHART_CONFIG_2}
             />
           </View>
           <Text style={wrBox.txt}>{feedback[6]}</Text>
@@ -474,28 +427,28 @@ const WeeklyListToggled = props => {
                     width:
                       meal.average_rate *
                         meal.average_rate *
-                        (deviceHeight / 2500) +
-                      deviceHeight / 30,
+                        (DEVICE_HEIGHT / 2500) +
+                      DEVICE_HEIGHT / 30,
                     height:
                       meal.average_rate *
                         meal.average_rate *
-                        (deviceHeight / 2500) +
-                      deviceHeight / 30,
+                        (DEVICE_HEIGHT / 2500) +
+                      DEVICE_HEIGHT / 30,
                     // left:
-                    //   (((deviceWidth * 5) / 3 - 338) / 30) *
+                    //   (((DEVICE_WIDTH * 5) / 3 - 338) / 30) *
                     //     (meal.created_at.slice(11, 13) - 6) -
                     //   (meal.average_rate + 40) / 2 +
                     //   100,
                     left:
-                      ((((deviceWidth - 34) / 12) * 11 -
-                        (100 * (deviceHeight / 2500) + deviceHeight / 30)) /
+                      ((((DEVICE_WIDTH - 34) / 12) * 11 -
+                        (100 * (DEVICE_HEIGHT / 2500) + DEVICE_HEIGHT / 30)) /
                         24) *
                         (meal.created_at.slice(11, 13) - 1) +
-                      (50 * (deviceHeight / 2500) + deviceHeight / 30) -
+                      (50 * (DEVICE_HEIGHT / 2500) + DEVICE_HEIGHT / 30) -
                       (meal.average_rate *
                         meal.average_rate *
-                        (deviceHeight / 2500) +
-                        deviceHeight / 30) /
+                        (DEVICE_HEIGHT / 2500) +
+                        DEVICE_HEIGHT / 30) /
                         2,
                     borderRadius: 100,
                     backgroundColor:
@@ -512,8 +465,8 @@ const WeeklyListToggled = props => {
                   <Image
                     style={{
                       zIndex: 20,
-                      width: deviceHeight / 40,
-                      height: deviceHeight / 40,
+                      width: DEVICE_HEIGHT / 40,
+                      height: DEVICE_HEIGHT / 40,
                       resizeMode: 'contain'
                     }}
                     source={
@@ -574,8 +527,8 @@ const WeeklyListToggled = props => {
     }
   ];
 
-  const MakeADay = () =>
-    weeklyListArray.map(item => {
+  const MakeADay = () => {
+    return weeklyListArray.map(item => {
       return (
         <View key={item.key} style={wLToggled.oneDay}>
           <View style={wLToggled.day}>
@@ -585,6 +538,7 @@ const WeeklyListToggled = props => {
         </View>
       );
     });
+  }
 
   return (
     <View style={barToggled.contentContainer}>
@@ -604,11 +558,13 @@ const WeeklyListToggled = props => {
 };
 // 끝------------------------------------------------------------------
 // 전체 화면 시작 ------------------------------------------------------------------
+
 const Summary = props => {
   const dispatch = useDispatch();
 
   const [weeklyListState, setWeeklyListState] = useState({ on: false });
   const [weeklyReportState, setWeeklyReportState] = useState({ on: false });
+
   const weeklyListToggle = () => {
     setWeeklyListState({ on: !weeklyListState.on });
   };
@@ -616,16 +572,10 @@ const Summary = props => {
     setWeeklyReportState({ on: !weeklyReportState.on });
   };
 
-  const timezoneOffset = new Date().getTimezoneOffset() * 60000;
-  const timestamp = new Date(Date.now() - timezoneOffset).toISOString();
-  const month = Number(timestamp.slice(5, 7));
-  const day = Number(timestamp.slice(8, 10));
+  const [month, day] = calcTime();
 
   const [selectedMonth, setSelectedMonth] = useState(month);
   const [selectedWeek, setSelectedWeek] = useState(1);
-
-  const month_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const week_list = [1, 2, 3, 4, 5];
 
   useEffect(() => {
     loadMonthMeals(selectedMonth);
@@ -695,9 +645,9 @@ const Summary = props => {
                   <Text style={topBox.setMonth}>{`▶︎`}</Text>
                 </TouchableOpacity>
               </View>
-              <Text style={topBox.txtDate}>2020.2.3 ~ 2.9</Text>
+              <Text style={topBox.txtDate}>{calcWeekOfYear(selectedWeek)}</Text>
               <View style={topBox.weekContainer}>
-                {week_list.map(week => {
+                {WEEK_LIST.map(week => {
                   if (selectedWeek == week) {
                     return (
                       <TouchableOpacity
@@ -779,7 +729,7 @@ const styles = EStyleSheet.create({
   },
   scrollInside: {
     width: '100%',
-    // height: (deviceHeight / 3.6) * 2.6 - home.margin
+    // height: (DEVICE_HEIGHT / 3.6) * 2.6 - home.margin
     height: 700
     // backgroundColor: 'pink'
   }
@@ -788,8 +738,8 @@ const styles = EStyleSheet.create({
 const topBox = EStyleSheet.create({
   container: {
     // zIndex: 10,
-    height: deviceHeight / 3.6,
-    width: deviceWidth,
+    height: DEVICE_HEIGHT / 3.6,
+    width: DEVICE_WIDTH,
     paddingRight: 17,
     paddingLeft: 17,
     justifyContent: 'flex-start'
@@ -816,7 +766,7 @@ const topBox = EStyleSheet.create({
     fontFamily: 'JosefinSans-Bold',
     color: yellow.b,
     // backgroundColor: 'red',
-    width: deviceWidth / 7,
+    width: DEVICE_WIDTH / 7,
     textAlign: 'right'
     // width: '30rem'
   },
@@ -837,7 +787,7 @@ const topBox = EStyleSheet.create({
     flexDirection: 'row',
     // backgroundColor: 'red',
     justifyContent: 'space-between',
-    width: (deviceWidth / 7) * 5.5
+    width: (DEVICE_WIDTH / 7) * 5.5
     // top: '-45rem'
   },
 
@@ -908,7 +858,7 @@ const topBox = EStyleSheet.create({
 const barToggled = StyleSheet.create({
   contentContainer: {
     flexDirection: 'column',
-    // height: (deviceHeight / 10) * 6,
+    // height: (DEVICE_HEIGHT / 10) * 6,
     flex: 1
     // backgroundColor: gray.a
   }
@@ -926,7 +876,7 @@ const wLToggled = EStyleSheet.create({
     width: '22rem',
     height: '22rem',
     resizeMode: 'contain',
-    marginLeft: deviceWidth / 12
+    marginLeft: DEVICE_WIDTH / 12
   },
   moon: {
     width: '22rem',
@@ -936,13 +886,13 @@ const wLToggled = EStyleSheet.create({
   oneDay: {
     flex: 1,
     flexDirection: 'row',
-    height: deviceHeight / 12
+    height: DEVICE_HEIGHT / 12
     // marginBottom: 5,
     // marginTop: 5
     // backgroundColor: gray.a
   },
   day: {
-    width: deviceWidth / 12,
+    width: DEVICE_WIDTH / 12,
     justifyContent: 'center'
     // backgroundColor: gray.d
   },
@@ -960,7 +910,7 @@ const wLToggled = EStyleSheet.create({
     position: 'absolute',
     borderBottomColor: gray.m,
     borderBottomWidth: 3,
-    width: ((deviceWidth - 34) / 12) * 11
+    width: ((DEVICE_WIDTH - 34) / 12) * 11
   }
 });
 
@@ -983,7 +933,7 @@ const bar = EStyleSheet.create({
 const unToggled = EStyleSheet.create({
   container: {
     // backgroundColor: 'red',
-    height: deviceHeight / 11,
+    height: DEVICE_HEIGHT / 11,
     alignItems: 'center',
     flexDirection: 'row'
   },

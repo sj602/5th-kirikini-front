@@ -6,8 +6,8 @@ import { Input } from 'react-native-elements';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import AsyncStorage from '@react-native-community/async-storage';
 import {
-  deviceWidth,
-  deviceHeight,
+  DEVICE_WIDTH,
+  DEVICE_HEIGHT,
   gray,
   kiriColor,
   weight,
@@ -173,7 +173,7 @@ const styles = EStyleSheet.create({
     width: '250rem',
     backgroundColor: 'lightgreen',
     borderRadius: '30rem',
-    height: deviceHeight / 13,
+    height: DEVICE_HEIGHT / 13,
     justifyContent: 'center',
     alignItems: 'center'
   },

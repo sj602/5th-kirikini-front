@@ -62,12 +62,12 @@ export const PRIVACY_URL = `http://${SERVER_URL}/privacy/`;
 
 
 // Device
-export const deviceWidth = Dimensions.get('window').width;
-export const deviceHeight = Dimensions.get('window').height;
+export const DEVICE_WIDTH = Dimensions.get('window').width;
+export const DEVICE_HEIGHT = Dimensions.get('window').height;
 
 
-// EStyleSheet.build({ $rem: deviceHeight / 780 });
-EStyleSheet.build({ $rem: deviceWidth / 380 });
+// EStyleSheet.build({ $rem: DEVICE_HEIGHT / 780 });
+EStyleSheet.build({ $rem: DEVICE_WIDTH / 380 });
 
 export const weight = {
   three: Platform.OS === 'ios' ? '300' : 'normal',
@@ -81,10 +81,10 @@ export const weight = {
 
 export const home = {
   margin:
-    (deviceHeight / deviceWidth) *
-    (deviceHeight / deviceWidth) *
-    (deviceHeight / deviceWidth) *
-    (deviceHeight / deviceWidth) *
+    (DEVICE_HEIGHT / DEVICE_WIDTH) *
+    (DEVICE_HEIGHT / DEVICE_WIDTH) *
+    (DEVICE_HEIGHT / DEVICE_WIDTH) *
+    (DEVICE_HEIGHT / DEVICE_WIDTH) *
     3.3
 };
 export const kiriColor = '#F2F9F2';
@@ -153,4 +153,34 @@ export const MENTS = {
     '건강 식단 아주 칭찬해',
     'Health is wealth, 고로 너는 부자야!'
   ]
+};
+
+export const MONTH_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+export const WEEK_LIST = [1, 2, 3, 4, 5];
+
+
+export const CHART_CONFIG_2 = {
+  backgroundGradientFrom: '#1E2923',
+  backgroundGradientFromOpacity: 0,
+  backgroundGradientTo: '#08130D',
+  backgroundGradientToOpacity: 0,
+
+  color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+  strokeWidth: 2, // optional, default 3
+  barPercentage: 0.5
+};
+
+export const CHART_CONFIG_3 = {
+  backgroundGradientFrom: '#1E2923',
+  backgroundGradientFromOpacity: 0,
+  backgroundGradientTo: '#08130D',
+  backgroundGradientToOpacity: 0.5,
+
+  color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+  strokeWidth: 2, // optional, default 3
+  barPercentage: 0.5
+};
+
+export const GRAPH_STYLE = {
+  borderRadius: 16
 };

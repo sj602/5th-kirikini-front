@@ -1,55 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Platform, StyleSheet, Text,
+  Platform, Text,
   View, Image, YellowBox,
-  TextInput, Alert, Button,
-  TouchableOpacity
+  Alert, Button,
 } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
-import appleAuth, {
-  AppleButton,
-  AppleAuthRequestOperation,
-  AppleAuthRequestScope,
-  AppleAuthCredentialState,
-} from '@invertase/react-native-apple-authentication';
-import KakaoLogins from '@react-native-seoul/kakao-login';
-import {
-  LoginButton,
-  AccessToken,
-  LoginManager,
-  GraphRequest,
-  GraphRequestManager
-} from 'react-native-fbsdk';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import { loginSuccess, loginMethod } from '../store/auth/action';
 import {
-  deviceHeight,
-  EMAIL_URL,
-  gray,
-  KAKAO_URL,
-  FB_URL,
-  AUTO_URL,
-  deviceWidth,
-  kiriColor,
-  yellow,
-  weight
+  DEVICE_HEIGHT, gray,
+  AUTO_URL, DEVICE_WIDTH, kiriColor,
+  yellow, weight
 } from '../utils/consts';
 import EStyleSheet from 'react-native-extended-stylesheet';
-
-if (!KakaoLogins) {
-  console.error('Module is Not Linked');
-}
-
-const logCallback = (log, callback) => {
-  console.log(log);
-  callback;
-};
+import KakaoLogin from '../components/Login/KakaoLogin';
+import EmailLogin from '../components/Login/EmailLogin';
+import FBLogin from '../components/Login/FBLogin';
+import AppleLogin from '../components/Login/AppleLogin';
 
 const Login = props => {
-  const [token, setToken] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -66,26 +38,6 @@ const Login = props => {
 
   const onChangePassword = _password => {
     setPassword(_password);
-  };
-
-  const emailLogin = async () => {
-    const data = {
-      email,
-      password
-    };
-
-    const _result = await axios.post(EMAIL_URL, data, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
-    if (_result.status === 200) {
-      const jwt = _result["data"]
-      await AsyncStorage.multiSet([
-          ['@jwt_access_token', jwt['jwt_access_token']],
-          ['@jwt_refresh_token', jwt['jwt_refresh_token']],
-          ['@email', email]
-        ]);
-      props.navigation.navigate('Home')
-    } else {
-      console.log(_result.data)
-    }
   };
 
   const autoLogin = async () => {
@@ -124,138 +76,13 @@ const Login = props => {
     });
   };
 
-  const kakaoLogin = () => {
-    KakaoLogins.login()
-      .then(result => {
-        console.log(result);
-        setToken(result.accessToken);
-
-        KakaoLogins.getProfile()
-          .then(res => {
-            setEmail(res.email);
-
-            AsyncStorage.setItem('@email', res.email).then(() => {
-              const body = {
-                access_token: result.accessToken,
-                refresh_token: result.refreshToken
-              };
-
-              axios
-                .post(KAKAO_URL, body)
-                .then(response => response.data)
-                .then(jwt => {
-                  AsyncStorage.multiSet(
-                    [
-                      ['@jwt_access_token', jwt['jwt_access_token']],
-                      ['@jwt_refresh_token', jwt['jwt_refresh_token']]
-                    ],
-                    () => autoLogin()
-                  );
-                })
-                .catch(err => {
-                  console.log('failed', err);
-                });
-            });
-          })
-          .catch(err => {
-            logCallback(`Get Profile Failed:${err.code} ${err.message}`);
-          });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  const appleLogin = async () => {
-    if(appleAuth.isSupported) {
-      const appleAuthRequestResponse = await appleAuth.performRequest({
-        requestedOperation: AppleAuthRequestOperation.LOGIN,
-        requestedScopes: [AppleAuthRequestScope.EMAIL, AppleAuthRequestScope.FULL_NAME],
-      });
-      console.log(456)
-    
-      const credentialState = await appleAuth.getCredentialStateForUser(appleAuthRequestResponse.user);
-      console.log(789)
-      if (credentialState === AppleAuthCredentialState.AUTHORIZED) {
-        console.log(101010)
-        console.log(credentialState)
-      }
-    } else {
-      Alert.alert('애플 로그인은 iOS 13 이상부터 가능합니다')
-    }
-  }
-
-  const fbLogin = result => {
-    AccessToken.getCurrentAccessToken().then(data => {
-      console.log(data.accessToken.toString());
-      console.log('fb data: ', data);
-
-      const profileRequestParams = {
-        fields: {
-          string: 'email'
-        }
-      };
-
-      const profileRequestConfig = {
-        httpMethod: 'GET',
-        version: 'v2.5',
-        parameters: profileRequestParams,
-        accessToken: token.toString()
-      };
-
-      const profileRequest = new GraphRequest(
-        '/me',
-        profileRequestConfig,
-        (error, result) => {
-          if (error) {
-            console.log(error);
-          } else {
-            console.log('email: ', result);
-          }
-        }
-      );
-
-      new GraphRequestManager().addRequest(profileRequest).start();
-
-      axios
-        .post(FB_URL, { access_token: data.accessToken.toString() })
-        .then(response => response.data)
-        .then(jwt => {
-          AsyncStorage.multiSet(
-            [
-              ['@jwt_access_token', jwt['jwt_access_token']],
-              ['@jwt_refresh_token', jwt['jwt_refresh_token']]
-            ],
-            () => autoLogin()
-          );
-        })
-        .catch(error => console.log('failed', error));
-    });
-
-    LoginManager.logInWithPermissions(['public_profile']).then(
-      function(result) {
-        if (result.isCancelled) {
-          console.log('Login cancelled');
-        } else {
-          console.log(
-            'Login success with permissions: ' +
-              result.grantedPermissions.toString()
-          );
-        }
-      },
-      function(error) {
-        console.log('Login fail with error: ' + error);
-      }
-    );
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.content}>
         <View
           style={{
             flexDirection: 'row',
-            width: deviceWidth,
+            width: DEVICE_WIDTH,
             justifyContent: 'space-between'
           }}
         >
@@ -269,7 +96,7 @@ const Login = props => {
 
         <Image style={styles.kirini} source={require('../../assets/img/kirini1.png')} />
       </View>
-      <View style={{width: deviceWidth * 0.7, marginTop: 10}}>
+      <View style={{width: DEVICE_WIDTH * 0.7, marginTop: 10}}>
         <Input
           placeholder='이메일'
           leftIcon={
@@ -300,17 +127,13 @@ const Login = props => {
           onChangeText={(text) => onChangePassword(text)}
         />
       </View>
-      <TouchableOpacity
-        onPress={emailLogin}
-        style={styles.loginButton}
-      >
-        <Text style={styles.txtKakao}>로그인</Text>
-      </TouchableOpacity>
       <Text style={styles.textKini}>{error}</Text>
 
       <View style={{marginTop: 10}}>
           <Button onPress={() => props.navigation.navigate("Register")} title="회원가입"></Button>
       </View>
+
+      <EmailLogin />
 
       <View style={{flexDirection: "row", justifyContent: "center", marginTop: 10}}>
         <View style={{flex: 1, borderBottomWidth: 1, borderBottomColor: 'gray', marginLeft: 80}}>
@@ -322,55 +145,9 @@ const Login = props => {
         </View>
       </View>
       
-      <TouchableOpacity onPress={kakaoLogin} style={styles.kakaoButton}>
-        <Image
-          style={styles.kakaoLogo}
-          source={require('../../assets/img/kakao_logo.png')}
-        />
-        <Text style={styles.txtKakao}>카카오 계정으로 시작</Text>
-      </TouchableOpacity>
-
-      {
-        Platform.OS === 'ios'
-        ?
-        (
-          <TouchableOpacity onPress={appleLogin} style={styles.appleButton}>
-            <Image
-              style={styles.kakaoLogo}
-              source={require('../../assets/img/apple_logo.png')}
-            />
-            <Text style={styles.txtApple}>애플 계정으로 시작</Text>
-          </TouchableOpacity>
-        )
-        :
-        null
-      }
-      
-
-      {/*<LoginButton
-          publishPermissions={["email"]}
-          onLoginFinished={
-            (error, result) => {
-              if (error) {
-                console.log("login has error: " + result.error);
-              } else if (result.isCancelled) {
-                console.log("login is cancelled.");
-              } else {
-                fbLogin(result)
-              }
-            }
-          }
-        onLogoutFinished={() => console.log("logout.")}/>*/}
-      {/*<TouchableOpacity // 추후 추가
-          onPress={fbLogin}
-          title="페이스북 로그인"
-          style={styles.btnFbLogin} >
-            <Image
-              source={require('../../assets/img/facebook_logo.jpg')}
-              style={{width:30, height:30, margin:18}}
-            />          
-          <Text style={styles.txtFbLogin}>페이스북 로그인</Text>
-        </TouchableOpacity>*/}
+      <KakaoLogin />
+      { Platform.OS === 'ios' ? <AppleLogin /> : null }
+      {/*<FBLogin />*/}
     </View>
   );
 };
@@ -417,7 +194,7 @@ const styles = EStyleSheet.create({
     width: '250rem',
     backgroundColor: 'lightgreen',
     borderRadius: '30rem',
-    height: deviceHeight / 13,
+    height: DEVICE_HEIGHT / 13,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -427,7 +204,7 @@ const styles = EStyleSheet.create({
     width: '250rem',
     backgroundColor: 'black',
     borderRadius: '30rem',
-    height: deviceHeight / 13,
+    height: DEVICE_HEIGHT / 13,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -443,7 +220,7 @@ const styles = EStyleSheet.create({
     width: '250rem',
     backgroundColor: yellow.a,
     borderRadius: '30rem',
-    height: deviceHeight / 13,
+    height: DEVICE_HEIGHT / 13,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -479,13 +256,13 @@ const styles = EStyleSheet.create({
     paddingLeft: 50
   },
   kirini: {
-    width: (deviceWidth * 1) / 2,
-    height: deviceWidth / 4,
+    width: (DEVICE_WIDTH * 1) / 2,
+    height: DEVICE_WIDTH / 4,
     resizeMode: 'contain'
   },
   leaf: {
-    width: (deviceWidth * 1) / 3,
-    height: deviceWidth / 5,
+    width: (DEVICE_WIDTH * 1) / 3,
+    height: DEVICE_WIDTH / 5,
     resizeMode: 'contain'
   }
 });

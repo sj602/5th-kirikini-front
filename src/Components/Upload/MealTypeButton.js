@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   Text,
   View,
   TouchableOpacity,
-  Dimensions,
 } from 'react-native';
-import { mealType } from '../store/meal/action';
-import { gray, yellow, meal } from '../utils/consts';
+import { mealType } from '../../store/meal/action';
+import { gray, yellow, meal } from '../../utils/consts';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const mealTypes = [
@@ -38,7 +37,7 @@ const MealTypeButton = props => {
   const dispatch = useDispatch();
 
   const MakeMealTypeButton = () => {
-    mealTypes.map(item => {
+    return mealTypes.map(item => {
       return (
         <TouchableOpacity
           key={item.key}
@@ -64,13 +63,13 @@ const MealTypeButton = props => {
         </TouchableOpacity>
       );
     });
-
-    return (
-      <View style={mealbtSt.container}>
-        <MakeMealTypeButton mealTypes={mealTypes} />
-      </View>
-    );
   }
+
+  return (
+    <View style={mealbtSt.container}>
+      <MakeMealTypeButton mealTypes={mealTypes} />
+    </View>
+  );
 };
 
 const btColor = color =>
@@ -95,6 +94,7 @@ const btColor = color =>
       backgroundColor: color
     }
   });
+  
 const font = EStyleSheet.create({
   eight:
     Platform.OS === 'ios'

@@ -8,13 +8,9 @@ import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
 import {
-  RATE_MEAL_URL,
-  deviceWidth,
-  gray,
-  yellow,
-  deviceHeight,
-  weight,
-  home
+  RATE_MEAL_URL, DEVICE_WIDTH,
+  gray, yellow, DEVICE_HEIGHT,
+  weight, home
 } from '../utils/consts';
 
 const Rate = props => {
@@ -113,9 +109,6 @@ const Rate = props => {
         <View style={styles.topMargin} />
         <View style={styles.titleHeader}>
           <Text style={styles.txtBigTitle}>건강도 채점</Text>
-          {/* <TouchableOpacity style={styles.infoCircle}>
-            <Text style={styles.txtInfo}>?</Text>
-          </TouchableOpacity> */}
         </View>
         <View style={mainImg.screen}>
           {mealToRate.length == 0 ? (
@@ -254,7 +247,7 @@ const slider = EStyleSheet.create({
   button: {
     marginTop: '20rem',
     width: '50%',
-    height: deviceWidth / 6.1,
+    height: DEVICE_WIDTH / 6.1,
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
@@ -285,7 +278,7 @@ const mainImg = EStyleSheet.create({
   screen: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: (deviceHeight / 100) * 38,
+    height: (DEVICE_HEIGHT / 100) * 38,
     borderTopLeftRadius: '70rem',
     borderBottomRightRadius: '70rem',
     borderColor: 'white',
@@ -309,7 +302,7 @@ const mainImg = EStyleSheet.create({
   img: {
     top: 0,
     width: '100%',
-    height: (deviceHeight / 100) * 38 - 20,
+    height: (DEVICE_HEIGHT / 100) * 38 - 20,
     borderTopLeftRadius: '60rem',
     borderBottomRightRadius: '60rem',
     resizeMode: 'cover'

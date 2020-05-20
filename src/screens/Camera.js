@@ -1,31 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  View,
-  Text,
-  TouchableOpacity,
+  View, Text, TouchableOpacity,
   Platform
 } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
 import { RNCamera } from 'react-native-camera';
 import ImagePicker from 'react-native-image-picker';
 import AsyncStorage from '@react-native-community/async-storage';
-import { mealSaved } from '../store/meal/action';
+import { saveMeal } from '../store/meal/action';
 import {
-  deviceWidth,
-  deviceHeight,
-  gray,
-  yellow,
-  weight
+  DEVICE_WIDTH, DEVICE_HEIGHT, gray,
+  yellow, weight
 } from '../utils/consts';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-let email = null;
-AsyncStorage.getItem('@email')
-  .then(data => (email = data))
-  .catch(err => console.log('get email failed'));
-
-const CameraScreen = props => {
+const CameraScreen = ({ navigation }) => {
+  const [email, setEmail] = useState();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    AsyncStorage.getItem('@email')
+      .then(data => setEmail(data))
+      .catch(err => console.log('get email failed'));
+  }, [])
 
   const takePicture = async () => {
     if (camera) {
@@ -40,14 +37,8 @@ const CameraScreen = props => {
         name: `${email}_${timestamp}.jpg`,
         type: 'image/jpg'
       };
-      dispatch(mealSaved(file, timestamp));
-
-      AsyncStorage.setItem('@mealImage', data.uri)
-        .then(result => {
-          console.log('image saved to async storage');
-          props.navigation.goBack();
-        })
-        .catch(err => console.log('image save failed'));
+      dispatch(saveMeal(file, timestamp));
+      navigation.goBack();
     }
   };
 
@@ -71,14 +62,8 @@ const CameraScreen = props => {
           name: `${email}_${timestamp}.jpg`,
           type: 'image/jpg'
         };
-        dispatch(mealSaved(file, timestamp));
-
-        AsyncStorage.setItem('@mealImage', data.uri)
-          .then(result => {
-            console.log('image saved to async storage');
-            props.navigation.goBack();
-          })
-          .catch(err => console.log('image save failed'));
+        dispatch(saveMeal(file, timestamp));
+        navigation.goBack();
       }
     });
   };
@@ -99,14 +84,6 @@ const CameraScreen = props => {
 
   return (
     <View style={cameraSt.container}>
-      {/* <TouchableOpacity onPress={() => takePicture()}>
-        <RNCamera
-          ref={ref => {
-            camera = ref;
-          }}
-          style={cameraSt.cameraView}
-        />
-      </TouchableOpacity> */}
       <CameraView />
       <View style={cameraSt.buttonContainer}>
         <TouchableOpacity onPress={() => openAlbum()} style={cameraSt.button1}>
@@ -130,8 +107,8 @@ const cameraSt = EStyleSheet.create({
     alignItems: 'center'
   },
   cameraView: {
-    width: deviceWidth,
-    height: deviceWidth
+    width: DEVICE_WIDTH,
+    height: DEVICE_WIDTH
   },
   buttonContainer: {
     position: 'absolute',
@@ -144,7 +121,7 @@ const cameraSt = EStyleSheet.create({
   button1: {
     bottom: 10,
     width: '160rem',
-    height: deviceHeight / 13,
+    height: DEVICE_HEIGHT / 13,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
@@ -154,7 +131,7 @@ const cameraSt = EStyleSheet.create({
   button2: {
     bottom: 10,
     width: '150rem',
-    height: deviceHeight / 13,
+    height: DEVICE_HEIGHT / 13,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: yellow.a,
@@ -181,5 +158,5 @@ CameraScreen.navigationOptions = ({ navigation }) => ({
 });
 
 export default connect(state => ({
-  file: state.meal.saved.file
+  meal: state.meal
 }))(CameraScreen);
